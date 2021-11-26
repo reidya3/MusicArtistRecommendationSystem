@@ -55,4 +55,4 @@ Next, to build a PDF of the project, please use the following command `jupyter-b
 For further information on how to accomplish this on other OS's, please [click here](https://jupyterbook.org/advanced/pdf.html?highlight=build%20pdf). The **PDF file** can be found in the [docs](/docs) folder.
 
 ## Website
-The content of this jupyter book is [hosted here](https://reidya3.github.io/CA4015_First_Assignment/Introduction.html). Github actions are utilized to automatically build the book and update the website when a `push` or `pull request` event occurs on the main branch.
+The content of this jupyter book is [hosted here](https://reidya3.github.io/MusicArtistRecommendationSystem/Introduction.html). Github actions are utilized to automatically build the book and update the website when a `push` or `pull request` event occurs on the main branch.
