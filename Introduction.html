@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; CA4015 Music Recommendation Task</title>
+    <title>CA4015 - Music Recommendation System &#8212; CA4015 Music Recommendation Task</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -53,7 +51,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Initial Data Exploration" href="Initial_Data_Exploration.html" />
+    <link rel="next" title="Collaborative filtering" href="Collaborative_filtering.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -79,7 +77,7 @@
         
       
       
-      <img src="_static/IGT-logo.png" class="logo" alt="logo">
+      <img src="_static/music-rec-logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">CA4015 Music Recommendation Task</h1>
@@ -93,24 +91,19 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   Introduction
+   CA4015 - Music Recommendation System
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Initial_Data_Exploration.html">
-   Initial Data Exploration
+  <a class="reference internal" href="Collaborative_filtering.html">
+   Collaborative filtering
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Clustering_Analysis.html">
-   Cluster Analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Federated_k_means.html">
-   Federated K-Means
+  <a class="reference internal" href="Evaluation.html">
+   Evaluation
   </a>
  </li>
  <li class="toctree-l1">
@@ -164,9 +157,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/Introduction.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/Introduction.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -200,6 +193,23 @@
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/reidya3/MusicArtistRecommendationSystem/main?urlpath=tree/book/Introduction.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -211,8 +221,45 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#description-of-datasets">
-   Description of Datasets
+  <a class="reference internal nav-link" href="#quick-links">
+   Quick links
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#download-data">
+   Download data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset">
+   Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploratory-data-analysis">
+   Exploratory data analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-validation">
+     Data Validation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploratory-visualisation">
+     Exploratory visualisation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-cleaning">
+   Data Cleaning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#save-dataframes">
+   Save dataframes
   </a>
  </li>
 </ul>
@@ -226,75 +273,488 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>The Iowa Gambling task <span id="id1">[<a class="reference internal" href="References.html#id20">Bechara <em>et al.</em>, 1994</a>]</span> assess real-life decision making. Developed by researchers at the University of Iowa, subjects participate in a simulated card game. Participants start with $2,000 and are presented with four card decks (A - D), with each deck more likely to yield monetary rewards or penalties over time i.e. some decks are “bad” while others are “good”. Below, A and B are considered “bad” as they have a negative expected value, while C and D are considered “good” as they are associated with a positive expected value. Test-takers obtain feedback on the amount lost or gained and the running total after each choice (trail). The subject’s goal is to adapt their pattern of choices to maximize the reward received.</p>
-<p><img alt="Iowa-Gambling-Task" src="_images/iowagambling.png" /></p>
-<p>In standard setups, the task typically lasts 100 trials. Empirical Investigations have shown that healthy (neurotypical) test-takers generally become aware of the “good” and “bad” decks after 20 to 40 trials <span id="id2">[<a class="reference internal" href="References.html#id4">Weller <em>et al.</em>, 2010</a>]</span>. However, patients who suffer from orbitofrontal cortex (OFC) dysfunction tend to continue choosing bad decks even though the realization of continued monetary loss may have already occurred in these participants. As presented above, participants must choose advantageous long-term choices over favourable short-term picks to achieve the greatest end monetary gain. Therefore, IGT remains a popular choice to evaluate decision making and, by extension, impulsivity as it does not suffer from the self-reflection biases that questionnaires tend to display.</p>
-<div class="section" id="description-of-datasets">
-<h2>Description of Datasets<a class="headerlink" href="#description-of-datasets" title="Permalink to this headline">¶</a></h2>
-<p>This investigation utilizes a dataset from a “many labs” initiative on the Iowa Gambling task, grouping ten studies and containing data from 617 healthy participants <span id="id3">[<a class="reference internal" href="References.html#id6">Steingroever <em>et al.</em>, 2015</a>]</span>. The data consist of the choices of each participant on each trial and the resulting rewards and losses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Not all studies had the same number of trials. The number of trails varied from 95, 100 and 150.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="ca4015-music-recommendation-system">
+<h1>CA4015 - Music Recommendation System<a class="headerlink" href="#ca4015-music-recommendation-system" title="Permalink to this headline">¶</a></h1>
+<p>With the growth of music streaming platforms such as Spotify, and Apple music, never before has music has been so accessible. However, the plethora of songs and artists makes it difficult for user’s to discover music that relates to their own taste.
+Recommendation systems seek to providers user’s with personalized recommendations in an effort to enhance the user’s experience of the platform. As most streaming services generate most of their money through subscription plans, the adoption of such models can increase revenue by increased customer retention.  Although the research literature is primarily concerned in increasing performance i.e. low error (e.g. RMSE) and high precision, recall etc, there are number of other variables that are important when deploying these models in production.</p>
+<ul class="simple">
+<li><p><em>Diversity</em>: There is often a diversity–accuracy dilemma in recommender systems. The tuning of parameters to reach the highest accuracy possible, often leads to recommendations that are highly similar
+to each other and lack diversity.  (<a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/1944339.1944341?casa_token=JilXozFC5mEAAAAA:H9yYIj40fQJ6pl5aXrIdhymhXwUJA931hUhXoyMdYYt6owXf7t2ESDct37VbIAXFXJ2ATBKpEFIX">Hurley et al., 2011</a>). However, users value recommendations from a diverse range of sources e.g. artists of different genres. Diversity in recommendation systems is used to avoid the overfitting problem as well as increasing the quality of user experiences.  For instance, the recent success of TikTok is driven by it’s ForYou page. In a recent press conference, Tiktok confirmed avoiding  homogenous video streams was one of the KPI’s when developing its algorithm (<a class="reference external" href="https://techcrunch.com/2020/06/18/tiktok-explains-how-the-recommendation-system-behind-its-for-you-feed-works/">Perez, 2021</a>) .</p></li>
+<li><p><em>Labelling</em>: The way in which recommendations are presented also affects user’s likeness to utilise them. <a class="reference external" href="https://docear.org/papers/sponsored_vs._organic_(research_paper)_recommendations_and_the_impact_of_labeling.pdf">Beel et al. (2013)</a> conducted a human behavioral study in which recommendations were labelled as either “Sponsored” or “Organic”. Recommendation with the former had a lower click-through rate ((5.93%) when compared to the latter (8.86%). They were also recommendations  with no label at all. Surprisingly, these performed the best in the study (9.87%).</p></li>
+<li><p><em>Serendipity</em>: Serendipity refers to the noveleness or uncertainty of the recommendations and is  related to diversity. Again, there is often a trade-off between model performance and serendipity. The purpose of serendipity is two-fold; mitgates against lost interest due to uniform choice sets and improves the underlying algorithm.</p></li>
+<li><p><em>Bias</em>: The  biases  in  NLP  (<a class="reference external" href="https://arxiv.org/pdf/2005.14050">Blodgett et  al.,  2020</a>,  <a class="reference external" href="https://www.mdpi.com/2076-3417/11/7/3184/pdf">Garrido-Muñoz  et  al.,  2021</a>)  and  computer  vision   (<a class="reference external" href="http://proceedings.mlr.press/v81/buolamwini18a/buolamwini18a.pdf">Buo-lamwini &amp; Gebru, 2018</a>) models are well documented. Likewise, recommender systems can suffer from these same harms as their success often relies on their ability to exploit the collective behavior of users in order to deliver  recommendations. Therefore, there is a risk of enforcing hegemonic viewpoints which may marginalize certain groups. However, some bias is desired such as gender bias when recommending textiles (<a class="reference external" href="https://arxiv.org/pdf/1811.01461.pdf">Tsintzou et al, 2018</a>).</p></li>
+<li><p><em>Robustness against Fraud</em>: Recommendation systems should be robust against fraud. An example of fraud could be bots designed to increase the perceived popularity of an item, which may cause an algorithm to recommend it more often.</p></li>
+<li><p><em>cold-start</em>: The cold start problem occurs due to the often times limited inital data available used to train the model i.e. when new items are added that have either none or very little interactions. This is a major problem of collaborative filtering based methods as these algorithms rely on user interactions to make recommendations.</p></li>
+</ul>
+<p>The type of algorithms that seek to solve to solve this use case are extremely diverse. Probabilistic models such as latent sematic model (<a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/963770.963774?casa_token=9ITysHAlZSIAAAAA:9vBR4JmoDX4eFAS0Ce9-oR0YksyU74wYwJjCPoe0M12aYwSwvd2FocX-dD-SVjR4ZOmTJcuDU4TQ">Hofmann et al., 2004</a>), Bayesian models (<a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/3178876.3186149">Sembium et al., 2018</a>), Markov chain models (<a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/1772690.1772773?casa_token=Iz8BdP3EaJwAAAAA:LokNPKaTGOZNTbQVVcBcEVfXCNaSQlGnUvwhdHUReiD003VaqTTtN-t0JCJHFUgBtG7lv_gg-zEE">Rendle et al., 2010</a>) and Spectral analysis techniques (<a class="reference external" href="https://asa.scitation.org/doi/pdf/10.1121/1.398548">Marple et al., 1989</a>) all feature predominantly within the scientific work on recommendation systems. In this investigation, we propose a number of approaches  for artist recommendation, namely K-nearest neighbor, matrix factorization (SGD) and a softmax model. Precision, and recall, viewed in different contexts, will be the metrics used to evaluate the robustness of our approaches. Our recommendation systems attempts to give N number of recommendations to the users where N=15.  We also utilise three novel graphs in an attempt to better understand the listening habits of the <a class="reference external" href="http://Last.FM">Last.FM</a> userbase.  Note, we provide a “quick links” section at the start of each notebook, to enable fast browsing when running the code. It also describes the general outline of the proceeding notebook.</p>
+<p>In this notebook, we perform an initial data exploration to perform transformations &amp; data sanitization checks; acquire rudimentary statistics of the datasets;  create exploratory visualizations.</p>
+<div class="section" id="quick-links">
+<h2>Quick links<a class="headerlink" href="#quick-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#download-data">Download Last.fm Dataset</a></p></li>
+<li><p><a class="reference external" href="#dataset">Dataset description</a></p></li>
+<li><p><a class="reference external" href="#exploratory-data-analysis">Exploratory data analysis</a></p>
+<ul>
+<li><p><a class="reference external" href="#data-validation">Data validation checks</a></p></li>
+<li><p><a class="reference external" href="#exploratory-visualisation">Exploratory visualisations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#data-cleaning">Data Cleaning</a></p></li>
+<li><p><a class="reference external" href="#save-dataframes">Save cleaned dataframes</a></p></li>
+</ul>
 </div>
-<p>The table below summarizes the multiple datasets used in this investigation.</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-align:left head"><p>Labs</p></th>
-<th class="text-align:right head"><p>Number of Participants</p></th>
-<th class="text-align:left head"><p>Trails</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-align:left"><p><span id="id4">Fridberg <em>et al.</em> [<a class="reference internal" href="References.html#id19">2010</a>]</span></p></td>
-<td class="text-align:right"><p>15</p></td>
-<td class="text-align:left"><p>95</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:left"><p><span id="id5">Horstmann <em>et al.</em> [<a class="reference internal" href="References.html#id18">2012</a>]</span></p></td>
-<td class="text-align:right"><p>162</p></td>
-<td class="text-align:left"><p>100</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:left"><p><span id="id6">Kjome <em>et al.</em> [<a class="reference internal" href="References.html#id17">2010</a>]</span></p></td>
-<td class="text-align:right"><p>19</p></td>
-<td class="text-align:left"><p>100</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:left"><p><span id="id7">Maia and McClelland [<a class="reference internal" href="References.html#id16">2004</a>]</span></p></td>
-<td class="text-align:right"><p>40</p></td>
-<td class="text-align:left"><p>100</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:left"><p><span id="id8">Premkumar <em>et al.</em> [<a class="reference internal" href="References.html#id15">2008</a>]</span></p></td>
-<td class="text-align:right"><p>25</p></td>
-<td class="text-align:left"><p>100</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:left"><p><span id="id9">Steingroever <em>et al.</em> [<a class="reference internal" href="References.html#id13">2011</a>]</span></p></td>
-<td class="text-align:right"><p>70</p></td>
-<td class="text-align:left"><p>100</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:left"><p><span id="id10">Steingroever <em>et al.</em> [<a class="reference internal" href="References.html#id14">2011</a>]</span></p></td>
-<td class="text-align:right"><p>57</p></td>
-<td class="text-align:left"><p>150</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:left"><p><span id="id11">Wetzels <em>et al.</em> [<a class="reference internal" href="References.html#id12">2010</a>]</span></p></td>
-<td class="text-align:right"><p>41</p></td>
-<td class="text-align:left"><p>150</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:left"><p><span id="id12">Wood <em>et al.</em> [<a class="reference internal" href="References.html#id11">2005</a>]</span></p></td>
-<td class="text-align:right"><p>153</p></td>
-<td class="text-align:left"><p>100</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:left"><p><span id="id13">Worthy <em>et al.</em> [<a class="reference internal" href="References.html#id10">2013</a>]</span></p></td>
-<td class="text-align:right"><p>35</p></td>
-<td class="text-align:left"><p>100</p></td>
-</tr>
-</tbody>
+<div class="section" id="download-data">
+<h2>Download data<a class="headerlink" href="#download-data" title="Permalink to this headline">¶</a></h2>
+<p><strong>DO NOT RUN THE NEXT CELL AS THE DATA HAS ALREADY BEEN DOWNLOADED</strong></p>
+<p>Download the <a class="reference external" href="http://Last.FM">Last.FM</a> dataset from the grouplens website into a <em>data</em> folder. This cell does not need to executed again, since the files are already there.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!mkdir data &amp;&amp; wget https://files.grouplens.org/datasets/hetrec2011/hetrec2011-lastfm-2k.zip &amp;&amp; unzip hetrec2011-lastfm-2k.zip -d data/.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+<p><strong>Figure 1:</strong> ER diagram of the <a class="reference external" href="http://Last.fm">Last.fm</a> dataset
+<img alt="erd" src="_images/erd_orginal_data.png" />
+In this investigation, we utilise the <a class="reference external" href="http://last.fm">last.fm</a> dataset. This dataset, introduced at the <a class="reference external" href="http://recsys.acm.org/2011">5th ACM Conference on Recommender Systems</a> workshop, details music artist listenings, users specified semantic categories(tags) associated with artists, and social networking information (user -&gt; user friendship relationships). Over 1800 users from the <a class="reference external" href="http://last.fm">last.fm</a> website were included with   17632 artists also being contained. Please refer to the above ER diagram for more context. The entities in the diagram represent .dat files. Unfortunately user’s demographic data  are not provided in the dataset. This dataset was curated in 2011.</p>
+</div>
+<div class="section" id="exploratory-data-analysis">
+<h2>Exploratory data analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-validation">
+<h3>Data Validation<a class="headerlink" href="#data-validation" title="Permalink to this headline">¶</a></h3>
+<p>Import relevant libaries and read in the files as pandas dataframes with the same table names specified in the ER. Minimal transformations are performed at this stage.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from google.colab import drive</span>
+<span class="c1">#import os</span>
+<span class="c1">#drive.mount(&#39;/content/drive/&#39;)</span>
+<span class="c1">#os.chdir(&quot;/content/drive/My Drive/DCU/fouth_year/advanced_machine_learning/music-recommodation-system&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">artist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/artists.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/tags.dat&#39;</span><span class="p">,</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;unicode_escape&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">user_friends</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user_friends.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">user_artists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user_artists.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">user_taggedartists_timestamps</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user_taggedartists-timestamps.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">user_taggedartists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user_taggedartists.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>check for null_values and ensure expected schema contraints (e.g. that tagID is unique).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Does artist contain any null values? </span><span class="si">{</span><span class="n">artist</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Does tags contain any null values? </span><span class="si">{</span><span class="n">tags</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Does user_friends contain any null values? </span><span class="si">{</span><span class="n">user_friends</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Does user_artists contain any null values? </span><span class="si">{</span><span class="n">user_artists</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Does user_taggedartists_timestamps contain any null values? </span><span class="si">{</span><span class="n">user_taggedartists_timestamps</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Does user_taggedartists contain any null values? </span><span class="si">{</span><span class="n">user_taggedartists</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Does artist contain any null values? True
+Does tags contain any null values? False
+Does user_friends contain any null values? False
+Does user_artists contain any null values? False
+Does user_taggedartists_timestamps contain any null values? False
+Does user_taggedartists contain any null values? False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">artist</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="c1">#Rename id to artistID</span>
+<span class="n">artist</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;artistID&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 17632 entries, 0 to 17631
+Data columns (total 4 columns):
+ #   Column      Non-Null Count  Dtype 
+---  ------      --------------  ----- 
+ 0   id          17632 non-null  int64 
+ 1   name        17632 non-null  object
+ 2   url         17632 non-null  object
+ 3   pictureURL  17188 non-null  object
+dtypes: int64(1), object(3)
+memory usage: 551.1+ KB
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not every artist has a pictureUrl attached.
+Combine the two user_taggedartist* dfs</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_taggedartists_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">user_taggedartists_timestamps</span><span class="p">,</span><span class="n">user_taggedartists</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;userID&#39;</span><span class="p">,</span><span class="s1">&#39;artistID&#39;</span><span class="p">,</span><span class="s1">&#39;tagID&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">user_taggedartists_merged</span><span class="p">[</span><span class="s1">&#39;artistID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12523
+</pre></div>
+</div>
+</div>
+</div>
+<p>Validate the uniqueness of IDs and surrogate keys.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Is tagID unique?: </span><span class="si">{</span><span class="n">tags</span><span class="p">[</span><span class="s2">&quot;tagID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Is artistID unique?: </span><span class="si">{</span><span class="n">artist</span><span class="p">[</span><span class="s2">&quot;artistID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">user_friends_ids</span>  <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="n">user_friends</span><span class="p">[[</span><span class="s1">&#39;userID&#39;</span><span class="p">,</span> <span class="s1">&#39;friendID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Is the combination of user and friend IDs unique in user_friends?: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">user_friends_ids</span><span class="p">))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_friends_ids</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">user_artist_tags_ids</span>  <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="n">user_taggedartists_merged</span><span class="p">[[</span><span class="s1">&#39;userID&#39;</span><span class="p">,</span> <span class="s1">&#39;artistID&#39;</span><span class="p">,</span> <span class="s1">&#39;tagID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;is the combination of user artist and tag IDs unique in user_taggedartists_merged?: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">user_artist_tags_ids</span><span class="p">))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_artist_tags_ids</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Is tagID unique?: True
+Is artistID unique?: True
+Is the combination of user and friend IDs unique in user_friends?: True
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>is the combination of user artist and tag IDs unique in user_taggedartists_merged?: True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exploratory-visualisation">
+<h3>Exploratory visualisation<a class="headerlink" href="#exploratory-visualisation" title="Permalink to this headline">¶</a></h3>
+<p>First, we are interested in how the trends in the top 4 most ‘mainstream’ genres. (Tags and genres are used interchangeably in this investigation). We define mainstream in terms of the most number of users rather than the listening count. First, we flatten the present relational model into a flat dataframe for ease of use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flatten_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">user_artists</span><span class="p">,</span> <span class="n">user_taggedartists_merged</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;userID&#39;</span><span class="p">,</span> <span class="s1">&#39;artistID&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<span class="n">flatten_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">flatten_df</span><span class="p">,</span> <span class="n">tags</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;tagID&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">flatten_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">flatten_df</span><span class="p">,</span> <span class="n">artist</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;artistID&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">flatten_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userID</th>
+      <th>artistID</th>
+      <th>weight</th>
+      <th>tagID</th>
+      <th>timestamp</th>
+      <th>day</th>
+      <th>month</th>
+      <th>year</th>
+      <th>tagValue</th>
+      <th>name</th>
+      <th>url</th>
+      <th>pictureURL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>52</td>
+      <td>11690.0</td>
+      <td>13.0</td>
+      <td>1.238537e+12</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2009.0</td>
+      <td>chillout</td>
+      <td>Morcheeba</td>
+      <td>http://www.last.fm/music/Morcheeba</td>
+      <td>http://userserve-ak.last.fm/serve/252/46005111...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>283</td>
+      <td>52</td>
+      <td>68.0</td>
+      <td>13.0</td>
+      <td>1.222812e+12</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>2008.0</td>
+      <td>chillout</td>
+      <td>Morcheeba</td>
+      <td>http://www.last.fm/music/Morcheeba</td>
+      <td>http://userserve-ak.last.fm/serve/252/46005111...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>541</td>
+      <td>52</td>
+      <td>894.0</td>
+      <td>13.0</td>
+      <td>1.193872e+12</td>
+      <td>1.0</td>
+      <td>11.0</td>
+      <td>2007.0</td>
+      <td>chillout</td>
+      <td>Morcheeba</td>
+      <td>http://www.last.fm/music/Morcheeba</td>
+      <td>http://userserve-ak.last.fm/serve/252/46005111...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>697</td>
+      <td>52</td>
+      <td>443.0</td>
+      <td>13.0</td>
+      <td>1.170284e+12</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2007.0</td>
+      <td>chillout</td>
+      <td>Morcheeba</td>
+      <td>http://www.last.fm/music/Morcheeba</td>
+      <td>http://userserve-ak.last.fm/serve/252/46005111...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>43</td>
+      <td>52</td>
+      <td>NaN</td>
+      <td>13.0</td>
+      <td>1.272665e+12</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>2010.0</td>
+      <td>chillout</td>
+      <td>Morcheeba</td>
+      <td>http://www.last.fm/music/Morcheeba</td>
+      <td>http://userserve-ak.last.fm/serve/252/46005111...</td>
+    </tr>
+  </tbody>
 </table>
-<p>For further clarification of the different IGT versions used, please consult this <a class="reference external" href="http://irep.ntu.ac.uk/id/eprint/20294/1/220623_2604.pdf">paper</a>. In addition, an explanation of these datasets is provided in the Initial Data Exploration Section.</p>
-<p>In this investigation, we seek to use the K-means clustering approach to segment the participants into well-defined groups.
-To start, we perform an initial data exploration to perform transformations &amp; data sanitization checks; acquire rudimentary statistics of the datasets; perform data augmentation; create exploratory visualizations. Next, we perform cluster analysis and evaluate our clusters using metrics such as Silhouette Coefficient and an Elbow curve.
-These clusters represent participants that exhibit similar decision-making patterns and may have similar underlying psychological qualities such as impulsivity, stress reaction level to punishments or similar learnt experiences. Next, we attempt to form a federated k-means algorithm to preserve the privacy of the individual labs. Finally, we conclude with the most important outcomes of our work.</p>
-<div class="math notranslate nohighlight">
-\[\]</div>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bubble_chart_df</span> <span class="o">=</span> <span class="n">flatten_df</span><span class="p">[</span><span class="n">flatten_df</span><span class="o">.</span><span class="n">year</span><span class="o">&gt;=</span> <span class="mi">2000</span><span class="p">]</span>
+<span class="n">top_ten_tags</span> <span class="o">=</span> <span class="n">bubble_chart_df</span><span class="p">[</span><span class="s1">&#39;tagValue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">bubble_chart_df</span> <span class="o">=</span> <span class="n">bubble_chart_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;tagValue&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+    <span class="s1">&#39;tagValue&#39;</span><span class="p">:</span><span class="s1">&#39;count&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span>
+    <span class="p">})</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span>
+        <span class="s1">&#39;tagValue&#39;</span><span class="p">:</span><span class="s1">&#39;number of users&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;weight&#39;</span><span class="p">:</span><span class="s1">&#39;avg listening count&#39;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">bubble_chart_df</span> <span class="o">=</span> <span class="n">bubble_chart_df</span><span class="p">[</span><span class="n">bubble_chart_df</span><span class="p">[</span><span class="s1">&#39;tagValue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">top_ten_tags</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_bubble_chart</span><span class="p">(</span><span class="n">flattend_df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        flattend_df: a df containing the number of users and average </span>
+<span class="sd">            listing count grouped by year and tag value.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A bubble chart show casing  popularity trends of genres since 2005</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Conert the categorical variable to numeric</span>
+    <span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;tagValue_cat&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;tagValue&#39;</span><span class="p">])</span>
+    <span class="n">tag_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;tagValue&#39;</span><span class="p">],</span> <span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;tagValue&#39;</span><span class="p">]))</span>
+
+    <span class="c1"># Set the figure size</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    
+    <span class="c1"># bars for legend</span>
+    <span class="n">custom_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.267004</span><span class="p">,</span> <span class="mf">0.004874</span><span class="p">,</span> <span class="mf">0.329415</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.190631</span><span class="p">,</span> <span class="mf">0.407061</span><span class="p">,</span> <span class="mf">0.556089</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.20803</span> <span class="p">,</span> <span class="mf">0.718701</span><span class="p">,</span> <span class="mf">0.472873</span><span class="p">,</span> <span class="mi">1</span>     <span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span> <span class="p">(</span><span class="mf">0.993248</span><span class="p">,</span> <span class="mf">0.906157</span><span class="p">,</span> <span class="mf">0.143936</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)]</span>
+
+    <span class="c1"># Bubblechart</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> 
+        <span class="n">y</span> <span class="o">=</span> <span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;number of users&#39;</span><span class="p">],</span> 
+        <span class="n">s</span><span class="o">=</span><span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;avg listening count&#39;</span><span class="p">],</span> 
+        <span class="n">c</span><span class="o">=</span><span class="n">flattend_df</span><span class="p">[</span><span class="s1">&#39;tagValue_cat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span><span class="p">,</span> 
+        <span class="n">cmap</span><span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> 
+        <span class="n">edgecolors</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> 
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+    
+    <span class="c1"># Add titles (main and on axis)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Years&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Users&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Popularity of the top 4 mainstream genres since 2005&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">custom_lines</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Alternative&#39;</span><span class="p">,</span> <span class="s1">&#39;Electronic&#39;</span><span class="p">,</span> <span class="s1">&#39;Pop&#39;</span><span class="p">,</span> <span class="s1">&#39;Rock&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span>
+
+<span class="n">create_bubble_chart</span><span class="p">(</span><span class="n">bubble_chart_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Introduction_17_0.png" src="_images/Introduction_17_0.png" />
+</div>
+</div>
+<p>In the bubble chart above, each bubble represents a mainstream genre, its area is proportional to its average listening count in a given year, the colour indicates its genre and the horizontal and vertical positions relate to year (since 2005) and the amount of users, respectively. It is evident that the average listening count and the total number of users was comparatively small in 2005. <a class="reference external" href="http://Last.fm">Last.fm</a> had a smaller user base in 2005 (842 users) with it’s number of customers  increasing in every year until 2010 (23790 users). The falloff at 2011 is most likely due to the fact that the data was not collected at the end of 2011. The number of user’s a genre has garnered does not necessarily correlate with average listening time. For example, in 2009 Electronic has the highest average listen time but the lowest amount of listeners.  This indicates this genre in 2009  was skewed by ‘hardcore listeners’ who listened longer than the average user in the other examined genres.  Rock had the most number of users for 5 out of 7 years. Pop had the top three highest average listing count overall, in 2007, 2006 and 2009, respectively. Finally, we observe the relative plateauing of the alternative genres in the terms of active listeners from 2007 to 2009.</p>
+<p>Next, we plot the distribution of listening counts. We observe the number of  listens is extremely right-skewed. A majority of users play artists a few hundred times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">flatten_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;KDE of listening count&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;KDE of listening count&#39;)
+</pre></div>
+</div>
+<img alt="_images/Introduction_20_1.png" src="_images/Introduction_20_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">flatten_df</span><span class="p">[</span><span class="n">flatten_df</span><span class="o">.</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;KDE of listening count where listening counts are less than 5,000&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;KDE of listening count where listening counts are less than 5,000&#39;)
+</pre></div>
+</div>
+<img alt="_images/Introduction_21_1.png" src="_images/Introduction_21_1.png" />
+</div>
+</div>
+<p>We are also interested in plotting the plotting the most and least number of tags. We observe pop and rock claim the top two spots. As tags are semantical categories by the users, we see a lot of non-sensical tags in the second plot such as “merge”. We hypothesis that these  may be the title of a song.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;tagValue&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">flatten_df</span><span class="p">[[</span><span class="s1">&#39;tagValue&#39;</span><span class="p">,</span><span class="s1">&#39;weight&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;tagValue&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Barchart of the top 20 genres with the highest listening counts&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Introduction_23_0.png" src="_images/Introduction_23_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">flatten_df</span><span class="p">[[</span><span class="s1">&#39;tagValue&#39;</span><span class="p">,</span><span class="s1">&#39;weight&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;tagValue&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                                       tagValue  weight
+8539                                talib kweli       0
+6940                                pra acalmar       0
+5311                                  macy gray       0
+3595                                 glitch-hop       0
+8154                                sonra dinle       0
+5310                              macumba music       0
+8158                        sophie ellis-bextor       0
+5309                             mactonight fav       0
+5308                       mactonight essential       0
+3599                       global communication       0
+5307                               machine head       0
+6025                              nature sounds       0
+3602                            glorious tracks       0
+2294                                     dejeto       0
+8168                                   soul-pop       0
+5304                                       m0sh       0
+8173                              sound collage       0
+1301                                bomfunk mcs       0
+8174  sound collage psychedelia electronic folk       0
+8177                              sound of 2011       0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we conduct a basic visualisation of the friendship relationships. We are interested in the number of connections a user has.  We intend to explore this further in the graph analysis notebook.  We observe that most users have a relative low number of friends (less than 20). However, some have a high amount. We hypothesis that these are likely music critics, influencers or DJs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_friends</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;userID&quot;</span><span class="p">)[</span><span class="s2">&quot;friendID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Amount of friends that users have&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;User count&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Connection count&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Introduction_26_0.png" src="_images/Introduction_26_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="data-cleaning">
+<h2>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">¶</a></h2>
+<p>Through the course of our visualisation development, we noticed a number of irregularities. According to the data, User 43 tagged Freemasons with the tag ‘dance’ in 1956. User 133 tagged  Claudia Leitte	with the tag ‘axe’ in 1957. This was before Lastfm was created, and before either artist started their careers! Thus, these values are removed from further analysis. In the graph analysis notebook, we are only interested in unique relationships i.e. the dataframe should <strong>not</strong> contain two values detailing the same relationship (user_25 -&gt; user_51, user_51 -&gt;user_25). Networkx’s Graph object demands this requirement for undirected graphs. In addition, 5,499 artists <strong>did not</strong> have any listening counts attached so these were not included in our investigation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flatten_df</span> <span class="o">=</span> <span class="n">flatten_df</span><span class="p">[</span><span class="n">flatten_df</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;=</span><span class="mi">2005</span><span class="p">]</span>
+<span class="n">unique_friendships</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">friend1</span><span class="p">,</span> <span class="n">friend2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">user_friends</span><span class="p">[</span><span class="s1">&#39;userID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">user_friends</span><span class="p">[</span><span class="s1">&#39;friendID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">friend1</span><span class="p">,</span><span class="n">friend2</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">unique_friendships</span> <span class="ow">and</span> <span class="p">(</span><span class="n">friend2</span><span class="p">,</span><span class="n">friend1</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">unique_friendships</span><span class="p">:</span>
+        <span class="n">unique_friendships</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">friend1</span><span class="p">,</span><span class="n">friend2</span><span class="p">))</span>
+<span class="n">unique_friendships_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">unique_friendships</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;friend1_id&#39;</span><span class="p">,</span> <span class="s1">&#39;friend2_id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="save-dataframes">
+<h2>Save dataframes<a class="headerlink" href="#save-dataframes" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">unique_friendships_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/unqiue_friendships.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">flatten_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/flatten_data.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -325,10 +785,10 @@ These clusters represent participants that exhibit similar decision-making patte
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="Initial_Data_Exploration.html" title="next page">
+    <a class='right-next' id="next-link" href="Collaborative_filtering.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Initial Data Exploration</p>
+        <p class="prev-next-title">Collaborative filtering</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

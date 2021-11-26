@@ -1,0 +1,1328 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evaluation &#8212; CA4015 Music Recommendation Task</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Conclusion" href="Conclusion.html" />
+    <link rel="prev" title="Collaborative filtering" href="Collaborative_filtering.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/music-rec-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CA4015 Music Recommendation Task</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   CA4015 - Music Recommendation System
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Collaborative_filtering.html">
+   Collaborative filtering
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Evaluation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="References.html">
+   References
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Evaluation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/reidya3/MusicArtistRecommendationSystem"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/reidya3/MusicArtistRecommendationSystem/issues/new?title=Issue%20on%20page%20%2FEvaluation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/reidya3/MusicArtistRecommendationSystem/main?urlpath=tree/book/Evaluation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-links">
+   Quick links:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overall-evaluation">
+   Overall Evaluation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation-matrix-at-k-5">
+     Evaluation matrix at k=5
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation-matrix-at-k-10">
+     Evaluation matrix at k=10
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation-matrix-at-k-15">
+     Evaluation matrix at k=15
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#drill-down-deeper">
+   Drill Down Deeper
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diversity">
+     Diversity
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#diversity-k-5">
+       Diversity K=5
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#diversity-k-10">
+       Diversity K=10
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#diversity-k-15">
+       Diversity K=15
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mainstream">
+     Mainstream
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mainstream-k-5">
+       Mainstream K = 5
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mainstream-k-10">
+       Mainstream K = 10
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mainstream-k-15">
+       Mainstream K = 15
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity">
+     Activity
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#activity-k-5">
+       Activity k = 5
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#k-10">
+       k = 10
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#k-15">
+       K= 15
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="evaluation">
+<h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h1>
+<p>One of the key requirements in developing a recommendation algorithm is to measure it’s  effectiveness. Typical metrics include mean squared error, root mean squared error, precision and recall. It must be noted that evaluating performance on a fixed test dataset will be biased as it is impossible to accurately predict the reactions of real users to the recommendations. Hence, any metric computed on static data will be some-what imprecise. Of course, in real-world settings, this is overcome by online A/B tests.</p>
+<p>In this investigation, we set a small amount of users as hold-out for evaluation, fitting a model to all of the remaining users and artists. From these ‘evaluation users’, 15 of their interactions data is set as a hold-out test set, while their latent factors are computed using the rest of the data and the previously fitted model from the other users.Then , the top-k recommendations for each user are collected. These top-k artists are compared against the hold-out test items (15 in total), seeing how well they do at ranking them near the top vs. how they rank the remainder of the items.</p>
+<p>As the data is implicit, the evaluation criteria  is akin to Information retrieval systems. The metrics we will use include:</p>
+<ul class="simple">
+<li><p><em>P&#64;k (“precision-at-k”)</em>: This metric calculates the proportion of the top-k  recommendations that include items from the test set for a given user - i.e.
+$<span class="math notranslate nohighlight">\(
+P&#64;k =
+\frac{1}{k}
+\sum_{i=1}^{k}
+\begin{cases}
+  1 &amp; \text{if \)</span>r_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
+  0 &amp; \text{otherwise}
+\end{cases}
+\)</span><span class="math notranslate nohighlight">\(
+Where \)</span>r_{i}<span class="math notranslate nohighlight">\( is the item ranked at position i by the model (sorting the predicted scores in descending order), and \)</span>\tau$ is the set of items that are in the test set for that user. Then, we calculate the mean and standard deviation  of these values to allow for comparison between the models.</p></li>
+<li><p>R&#64;k (“recall-at-k”): while P&#64;k captures what a recommender system aims at being good at, it does not capture the fact that, the more test items there are, the higher the chances that they will be included in the top-K recommendations. The test set includes 15 items for each user. This metric examines the  proportion of the test artists would have been retrieved with the top-k recommended list:
+$<span class="math notranslate nohighlight">\(
+R&#64;k =
+\frac{1}{|\tau|}
+\sum_{i=1}^{k}
+\begin{cases}
+  1 &amp; \text{if \)</span>r_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
+  0 &amp; \text{otherwise}
+\end{cases}
+\)</span>$
+Again, we take the mean and standard deviation of this metric to allow comparison.</p></li>
+<li><p>Hit&#64;k (“Hit Rate at k” ): This is a simple Binary metric that examines whether any of the top-k recommended artists were in the test set for a given user:
+$<span class="math notranslate nohighlight">\(
+\max_{{i=1...k}}=
+\begin{cases}
+  1 &amp; \text{if \)</span>r_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
+  0 &amp; \text{otherwise}
+\end{cases}
+\)</span>$
+Again, we take the mean and standard deviation of this metric to allow comparison.</p></li>
+</ul>
+<div class="section" id="quick-links">
+<h2>Quick links:<a class="headerlink" href="#quick-links" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#setup">Setup</a></p></li>
+<li><p><a class="reference external" href="#overall-evaluation">Overall Evaluation</a></p>
+<ul>
+<li><p><a class="reference external" href="#evaluation-matrix-at-k=5">K = 5</a></p></li>
+<li><p><a class="reference external" href="#evaluation-matrix-at-k=10">K = 10</a></p></li>
+<li><p><a class="reference external" href="#evaluation-matrix-at-k=15">K = 15</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#drill-down-deeper">Drilling deeper</a></p>
+<ul>
+<li><p><a class="reference external" href="#diversity">Diversity</a></p>
+<ul>
+<li><p><a class="reference external" href="#diversity-k=5">K = 5</a></p></li>
+<li><p><a class="reference external" href="#diversity-k=10">K = 10</a></p></li>
+<li><p><a class="reference external" href="#diversity-k=15">K = 15</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#mainstream">Mainstream</a></p>
+<ul>
+<li><p><a class="reference external" href="#mainstream-k-=-5">K = 5</a></p></li>
+<li><p><a class="reference external" href="#mainstream-k-=-10">K = 10</a></p></li>
+<li><p><a class="reference external" href="#mainstream-k-=-15">K = 15</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="#activity">Activity</a></p>
+<ul>
+<li><p><a class="reference external" href="#activity-k-=-5">K = 5</a></p></li>
+<li><p><a class="reference external" href="#activity-k-=-5">K = 10</a></p></li>
+<li><p><a class="reference external" href="#activity-k-=-5">K = 15</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>Importing the required data files and libraries. We also define the functions required for each metric in this section. Please view the function string for more in-depth explanation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">vanilla_dot_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/evaluation/vannila_dot_pred.csv&#39;</span><span class="p">)</span>
+<span class="n">vanilla_cos_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/evaluation/vanila_cos_pred.csv&#39;</span><span class="p">)</span>
+<span class="n">reg_dot_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/evaluation/reg_dot_pred.csv&#39;</span><span class="p">)</span>
+<span class="n">reg_cos_pred</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/evaluation/reg_cos_pred.csv&#39;</span><span class="p">)</span>
+<span class="n">test_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/evaluation/test-set.csv&#39;</span><span class="p">)</span>
+<span class="n">user_taggedartists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;data/user_taggedartists-timestamps.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">user_artists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user_artists.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_precision</span><span class="p">(</span><span class="n">model_recommended_items</span><span class="p">,</span><span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">unique_users</span><span class="o">=</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate precision as defined above</span>
+<span class="sd">    Args:</span>
+<span class="sd">        model_recommended_items: a dataframe containing userIDs, their top 15 artists by a defined model, and the correspnding scores.</span>
+<span class="sd">        test_Set: the test set as defined above, contains 20 items</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the mean and standard deviation of the precision values of the users</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">precision_score_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">model_recommended_items</span> <span class="o">=</span> <span class="n">model_recommended_items</span><span class="p">[</span><span class="n">model_recommended_items</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">curr_userID</span> <span class="ow">in</span> <span class="n">unique_users</span><span class="p">:</span>
+        <span class="n">recommended_artistIDs</span> <span class="o">=</span>  <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">model_recommended_items</span><span class="p">[</span><span class="n">model_recommended_items</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s2">&quot;predictions_artists&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">test_artist_ids</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">test_set</span><span class="p">[</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s2">&quot;holdout_artists&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">common_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">recommended_artistIDs</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">test_artist_ids</span><span class="p">)))</span>
+        <span class="n">precision_score_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">common_count</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">precision_score_list</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">precision_score_list</span><span class="p">))</span>
+
+    
+    
+<span class="k">def</span> <span class="nf">calculate_recall</span><span class="p">(</span><span class="n">model_recommended_items</span><span class="p">,</span><span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">unique_users</span><span class="o">=</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate recall as defined above</span>
+<span class="sd">    Args:</span>
+<span class="sd">        model_recommended_items: a dataframe containing userIDs, their top 15 artists by a defined model, and the correspnding scores.</span>
+<span class="sd">        test_Set: the test set as defined above, contains 20 items</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the mean and standard deviation of the recall values of the users</span>
+<span class="sd">&quot;&quot;&quot;</span>
+    <span class="n">recall_score_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">model_recommended_items</span> <span class="o">=</span> <span class="n">model_recommended_items</span><span class="p">[</span><span class="n">model_recommended_items</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">curr_userID</span> <span class="ow">in</span> <span class="n">unique_users</span><span class="p">:</span>
+        <span class="n">recommended_artistIDs</span> <span class="o">=</span>  <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">model_recommended_items</span><span class="p">[</span><span class="n">model_recommended_items</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s2">&quot;predictions_artists&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">test_artist_ids</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">test_set</span><span class="p">[</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s2">&quot;holdout_artists&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">common_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">recommended_artistIDs</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">test_artist_ids</span><span class="p">)))</span>
+        <span class="n">recall_score_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">common_count</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_artist_ids</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">recall_score_list</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">recall_score_list</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">calculate_hit_rate</span><span class="p">(</span><span class="n">model_recommended_items</span><span class="p">,</span><span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">unique_users</span><span class="o">=</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate hit-rate as defined above</span>
+<span class="sd">    Args:</span>
+<span class="sd">        model_recommended_items: a dataframe containing userIDs, their top 15 artists by a defined model, and the correspnding scores.</span>
+<span class="sd">        test_Set: the test set as defined above, contains 20 items</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the mean and standard deviation of the hit-rate values of the users</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">hit_rate_score_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">model_recommended_items</span> <span class="o">=</span> <span class="n">model_recommended_items</span><span class="p">[</span><span class="n">model_recommended_items</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">curr_userID</span> <span class="ow">in</span> <span class="n">unique_users</span><span class="p">:</span>
+        <span class="n">recommended_artistIDs</span> <span class="o">=</span>  <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">model_recommended_items</span><span class="p">[</span><span class="n">model_recommended_items</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s2">&quot;predictions_artists&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">test_artist_ids</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">test_set</span><span class="p">[</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s2">&quot;holdout_artists&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">common_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">recommended_artistIDs</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">test_artist_ids</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">common_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">common_count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">hit_rate_score_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">common_count</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">hit_rate_score_list</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">hit_rate_score_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_names_variable_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;SGD_Matrix_Fact_vanilla_dot&quot;</span><span class="p">:</span> <span class="n">vanilla_dot_pred</span><span class="p">,</span>
+    <span class="s2">&quot;SGD_Matrix_Fact_vanilla_cosine&quot;</span><span class="p">:</span><span class="n">vanilla_cos_pred</span><span class="p">,</span>
+    <span class="s2">&quot;SGD_Matrix_Fact_regularized_dot&quot;</span><span class="p">:</span><span class="n">reg_dot_pred</span><span class="p">,</span>
+    <span class="s2">&quot;SGD_Matrix_Fact_regularized_cosine&quot;</span><span class="p">:</span><span class="n">reg_cos_pred</span><span class="p">,</span>
+<span class="c1">#    &quot;Softmax_dot&quot;: None,</span>
+ <span class="c1">#   &quot;Softmax_cosine&quot;:None</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="overall-evaluation">
+<h2>Overall Evaluation<a class="headerlink" href="#overall-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>Now, we construct the evaluation matrix. In this evaluation matrix, the index is the the various model configurations in the format of <em>&lt;Model_name&gt;_&lt;Similairty_meausre&gt;</em>.  The columns specify the metrics used in the format <em>&lt;metric_name&gt;<em>at</em>&lt;k_value&gt;__&lt;mean/standard_deviation&gt;</em>. An individual evaluation matrix is computed for each value of k to keep it presentable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create evaluation matrix</span>
+<span class="k">def</span> <span class="nf">create_evaluation_matrix_at_k</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;create evualtion matrix for a value of k&quot;&quot;&quot;</span>
+    <span class="n">evaluation_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">model_names_variable_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">temp_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_name</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;p_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_mean&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="n">calculate_precision</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;r_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_mean&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="n">calculate_recall</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;hr_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_mean&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="n">calculate_hit_rate</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;p_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_stdv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_precision</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;r_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_stdv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_recall</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;hr_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_stdv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_hit_rate</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">temp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
+        <span class="n">evaluation_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">evaluation_matrix</span><span class="p">,</span> <span class="n">temp_df</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">evaluation_matrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="evaluation-matrix-at-k-5">
+<h3>Evaluation matrix at k=5<a class="headerlink" href="#evaluation-matrix-at-k-5" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">create_evaluation_matrix_at_k</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>model_name</th>
+      <th>p_at_5_mean</th>
+      <th>r_at_5_mean</th>
+      <th>hr_at_5_mean</th>
+      <th>p_at_5_stdv</th>
+      <th>r_at_5_stdv</th>
+      <th>hr_at_5_stdv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_vanilla_dot</td>
+      <td>0.033387</td>
+      <td>0.011129</td>
+      <td>0.144928</td>
+      <td>0.087315</td>
+      <td>0.029105</td>
+      <td>0.352028</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_vanilla_cosine</td>
+      <td>0.257112</td>
+      <td>0.085704</td>
+      <td>0.713366</td>
+      <td>0.221936</td>
+      <td>0.073979</td>
+      <td>0.452189</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_regularized_dot</td>
+      <td>0.082662</td>
+      <td>0.027554</td>
+      <td>0.341922</td>
+      <td>0.126538</td>
+      <td>0.042179</td>
+      <td>0.474353</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_regularized_cosine</td>
+      <td>0.268062</td>
+      <td>0.089354</td>
+      <td>0.758454</td>
+      <td>0.210525</td>
+      <td>0.070175</td>
+      <td>0.428020</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="evaluation-matrix-at-k-10">
+<h3>Evaluation matrix at k=10<a class="headerlink" href="#evaluation-matrix-at-k-10" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">create_evaluation_matrix_at_k</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>model_name</th>
+      <th>p_at_10_mean</th>
+      <th>r_at_10_mean</th>
+      <th>hr_at_10_mean</th>
+      <th>p_at_10_stdv</th>
+      <th>r_at_10_stdv</th>
+      <th>hr_at_10_stdv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_vanilla_dot</td>
+      <td>0.033924</td>
+      <td>0.022616</td>
+      <td>0.250671</td>
+      <td>0.067292</td>
+      <td>0.044861</td>
+      <td>0.433399</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_vanilla_cosine</td>
+      <td>0.218894</td>
+      <td>0.145930</td>
+      <td>0.845947</td>
+      <td>0.160707</td>
+      <td>0.107138</td>
+      <td>0.360999</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_regularized_dot</td>
+      <td>0.084326</td>
+      <td>0.056218</td>
+      <td>0.566828</td>
+      <td>0.092157</td>
+      <td>0.061438</td>
+      <td>0.495514</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_regularized_cosine</td>
+      <td>0.247343</td>
+      <td>0.164895</td>
+      <td>0.893720</td>
+      <td>0.160956</td>
+      <td>0.107304</td>
+      <td>0.308196</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="evaluation-matrix-at-k-15">
+<h3>Evaluation matrix at k=15<a class="headerlink" href="#evaluation-matrix-at-k-15" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">create_evaluation_matrix_at_k</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>model_name</th>
+      <th>p_at_15_mean</th>
+      <th>r_at_15_mean</th>
+      <th>hr_at_15_mean</th>
+      <th>p_at_15_stdv</th>
+      <th>r_at_15_stdv</th>
+      <th>hr_at_15_stdv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_vanilla_dot</td>
+      <td>0.036965</td>
+      <td>0.036965</td>
+      <td>0.348363</td>
+      <td>0.062706</td>
+      <td>0.062706</td>
+      <td>0.476452</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_vanilla_cosine</td>
+      <td>0.189873</td>
+      <td>0.189873</td>
+      <td>0.908749</td>
+      <td>0.129153</td>
+      <td>0.129153</td>
+      <td>0.287965</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_regularized_dot</td>
+      <td>0.083342</td>
+      <td>0.083342</td>
+      <td>0.703704</td>
+      <td>0.076630</td>
+      <td>0.076630</td>
+      <td>0.456623</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>SGD_Matrix_Fact_regularized_cosine</td>
+      <td>0.227232</td>
+      <td>0.227232</td>
+      <td>0.941492</td>
+      <td>0.133888</td>
+      <td>0.133888</td>
+      <td>0.234701</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>From these metrics, the best-performing models seem to be those that use the cosine similarity measure rather than the dot product. Cosine similarity only cares about <em>angle difference</em>, where as dot product cares about <em>angle and the magnitude</em>. Since artists that are more mainstream, i.e. have more user interactions, tend to have a higher norms, we hypothesis that models that incorporate this metric become biased towards mainstream artists and therefore fail to recommended niche artists. On the other hand, the  dot product is less expensive (in terms of complexity and implementation). It is safe to conclude that the addition of regularization on the SGD Matrix Factorization model provided it with a boost across all examined metrics. As we explained previously, regularization helps mitigate the “rich-get-richer” effect for popular artists. If our vanilla SGD matrix factorization formula was deployed into production, there is a risk users could become stuck in an “information confinement area”, leading to poor user experience and lost revenue. Regularization helps to mitigate against the model paying too much attention towards training data (low bias &amp; high variance) which can lead to poor generalization.</p>
+<p>For the models that incorporate the cosine similarity, the precision value decreases as k increases. This is the desired result (rather than the inverse) as the objective of a good recommendation system is supply relevant recommendations near the top. We believe users are unlikely to look at more than the top five recommendations. It is interesting to note that the spread of precision values decreases as k increases for these models. This is an undesired result as they could be outliers biasing our mean value for earlier values of k and our subsequent conclusions.</p>
+<p>For the models that incorporate the dot product, the precision
+metrics remains relatively similar. This indicates the same proportion of relevant recommendations are produced for different values of K. Therefore, we would prefer the models that incorporated cosine similarity in production.</p>
+<p>Recall increase as K increases for most models. This is expected as there are more recommendations. For instance, the maximum recall value we can have &#64; 5 is 1/3, where &#64;10 is 2/3. Comparing the model recall values and the maximum recall available,  the ability of these models to recommend relevant recommendations out of the relevant set is relatively proportionate across all K-values. Although the standard deviation of recall for most models increases as k increases.</p>
+<p>Hit rate is a simple metric, and increases as k increases due to the increasing number of recommendations the model is allowed to make. The standard deviation of this metric decrease as k increases.</p>
+</div>
+</div>
+<div class="section" id="drill-down-deeper">
+<h2>Drill Down Deeper<a class="headerlink" href="#drill-down-deeper" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned in the introduction section, just computing evaluation metrics across all users does not truly capture the effectiveness of a recommendation system. We decide to drill down deeper, viewing users in three separate ways based on their behaviour.</p>
+<ul class="simple">
+<li><p><em>Diversity</em>: We are interested in how our systems perform for users with an uniform listening taste vs users with a varied taste.  We attach a diversity score to each user.
+$<span class="math notranslate nohighlight">\(
+D_{i} =   \frac{1}{|J|}
+\sum_{j=1}^{|J|}
+tc_{j}
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>J<span class="math notranslate nohighlight">\( is the set of artists that user \)</span>i<span class="math notranslate nohighlight">\( listened to and \)</span>tc_{j}<span class="math notranslate nohighlight">\( represents the total number of unique tags (assigned by **all** users) belonging to artist \)</span>j$.
+Of course, there is a cavet to this formulation, in that user’s who  listen to more artists will generally have  have a higher score. This score is then used to divide the users into four distinct groups.</p></li>
+<li><p><em>“Following the crowd” users</em>: Users are divided into four groups of approximently equal size, depending on how mainstream their listening habitats are. First, we caulate the mainstreamness of an artist j:
+$<span class="math notranslate nohighlight">\(
+M_{j} =   \frac{1}{M}
+\sum_{i=1}^{M}
+\begin{cases}
+  1 &amp; \text{if \)</span>u_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
+  0 &amp; \text{otherwise}
+\end{cases}
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>\tau<span class="math notranslate nohighlight">\( represents an artist's audience and \)</span>M<span class="math notranslate nohighlight">\( is the the total number of users on the Last.fm Website.  User \)</span>i<span class="math notranslate nohighlight">\('s mainstream listening habitat (\)</span>MH_{i}<span class="math notranslate nohighlight">\() is then calculated as follows:
+\)</span><span class="math notranslate nohighlight">\(
+MH_{i} =   \frac{1}{J}
+\sum_{j=1}^{J}
+M_{j}
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>J<span class="math notranslate nohighlight">\( is the set of artists that user \)</span>i$ listened to.</p></li>
+<li><p><em>Activity on <a class="reference external" href="http://Last.fm">Last.fm</a></em>: Users are divided into four separate clusters of approximately equal size depending on their activity on the <a class="reference external" href="http://last.fm">last.fm</a> website. “Activity” is calculated for user i as follows:
+$<span class="math notranslate nohighlight">\(
+A_{i} = {\text{Total Number of plays}}
+\)</span>$</p></li>
+</ul>
+<p>For all semantic categories, quartile ranges <span class="math notranslate nohighlight">\(Q_{1}, Q_{2}, Q_{3}\)</span> are utilised as cutting off points for their respective groups.</p>
+<p>We now define helper functions to aid in this process.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">catch</span><span class="p">(</span><span class="n">artist</span><span class="p">,</span> <span class="n">desired_dict</span><span class="p">):</span>
+    <span class="s2">&quot;Not every artistID has a tag &quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">desired_dict</span><span class="p">[</span><span class="n">artist</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">calculate_diversity_users</span><span class="p">(</span><span class="n">user_artists</span><span class="p">,</span> <span class="n">user_taggedartists</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate diversity score for each user</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a dict containing user id and diversity score</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_artists</span> <span class="o">=</span> <span class="n">user_artists</span><span class="p">[</span><span class="n">user_artists</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+    <span class="n">artist_tag_count_dict</span> <span class="o">=</span> <span class="n">user_taggedartists</span><span class="p">[[</span><span class="s2">&quot;artistID&quot;</span><span class="p">,</span> <span class="s2">&quot;tagID&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;artistID&quot;</span><span class="p">)[</span><span class="s2">&quot;tagID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="n">user_diversity_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">curr_userID</span> <span class="ow">in</span> <span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="n">J</span> <span class="o">=</span> <span class="n">user_artists</span><span class="p">[</span><span class="n">user_artists</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s1">&#39;artistID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="n">j_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">catch</span><span class="p">(</span><span class="n">artist</span><span class="p">,</span><span class="n">artist_tag_count_dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">J</span><span class="p">])</span>
+        <span class="n">user_diversity_dict</span><span class="p">[</span><span class="n">curr_userID</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">/</span><span class="n">j_len</span>
+    <span class="k">return</span> <span class="n">user_diversity_dict</span>
+
+<span class="k">def</span> <span class="nf">calculate_mainstream_users</span><span class="p">(</span><span class="n">user_artists</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate mainstream score for each user</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a dict containing user id and mainstream score</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_artists</span> <span class="o">=</span> <span class="n">user_artists</span><span class="p">[</span><span class="n">user_artists</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">user_mainstream_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">artist_user_count_dict</span> <span class="o">=</span>  <span class="n">user_artists</span><span class="p">[[</span><span class="s2">&quot;artistID&quot;</span><span class="p">,</span> <span class="s2">&quot;userID&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;artistID&quot;</span><span class="p">)[</span><span class="s2">&quot;userID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="n">artist_user_count_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="o">/</span> <span class="n">M</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">artist_user_count_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="k">for</span> <span class="n">curr_userID</span> <span class="ow">in</span> <span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="n">J</span> <span class="o">=</span> <span class="n">user_artists</span><span class="p">[</span><span class="n">user_artists</span><span class="o">.</span><span class="n">userID</span> <span class="o">==</span> <span class="n">curr_userID</span><span class="p">][</span><span class="s1">&#39;artistID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="n">j_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">artist_user_count_dict</span><span class="p">[</span><span class="n">artist</span><span class="p">]</span> <span class="k">for</span> <span class="n">artist</span> <span class="ow">in</span> <span class="n">J</span><span class="p">])</span>
+        <span class="n">user_mainstream_dict</span><span class="p">[</span><span class="n">curr_userID</span><span class="p">]</span> <span class="o">=</span> <span class="n">tc</span><span class="o">/</span><span class="n">j_len</span>
+    <span class="k">return</span> <span class="n">user_mainstream_dict</span>
+
+<span class="k">def</span> <span class="nf">calculate_activity</span><span class="p">(</span><span class="n">user_artists</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate activity score for each user</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a dict containing user id and activity score</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user_artists</span> <span class="o">=</span> <span class="n">user_artists</span><span class="p">[</span><span class="n">user_artists</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">())]</span>
+    <span class="n">user_activity_dict</span> <span class="o">=</span> <span class="n">user_artists</span><span class="p">[[</span><span class="s2">&quot;userID&quot;</span><span class="p">,</span> <span class="s2">&quot;weight&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;userID&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">user_activity_dict</span>
+    
+<span class="k">def</span> <span class="nf">split_dict_into_four_groups</span><span class="p">(</span><span class="n">score_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;splits users IDS into four groups according to their score</span>
+<span class="sd">            the 25th,50th,75th percentiles serve as splitting points</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        four lists, one for each group </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Q1</span><span class="p">,</span><span class="n">Q2</span><span class="p">,</span><span class="n">Q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">score_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">])</span>
+    <span class="n">group_1_ids</span><span class="p">,</span> <span class="n">group_2_ids</span><span class="p">,</span> <span class="n">group_3_ids</span><span class="p">,</span> <span class="n">group_4_ids</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span> <span class="p">,[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">user_id</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">score_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="n">Q1</span><span class="p">:</span>
+            <span class="n">group_1_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="n">Q1</span>  <span class="ow">and</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="n">Q2</span><span class="p">:</span>
+            <span class="n">group_2_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="n">Q2</span>  <span class="ow">and</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="n">Q3</span><span class="p">:</span>
+            <span class="n">group_3_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;=</span> <span class="n">Q3</span><span class="p">:</span>
+            <span class="n">group_4_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">group_1_ids</span><span class="p">,</span> <span class="n">group_2_ids</span><span class="p">,</span> <span class="n">group_3_ids</span><span class="p">,</span> <span class="n">group_4_ids</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">visualize_category_evaluation</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Does pre-processing to create a dataframe containing</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        four lists, one for each group </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metric_func_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Precision&#39;</span><span class="p">:</span> <span class="n">calculate_precision</span><span class="p">,</span>
+        <span class="s1">&#39;Recall&#39;</span><span class="p">:</span> <span class="n">calculate_recall</span><span class="p">,</span>
+        <span class="s1">&#39;Hit Rate&#39;</span><span class="p">:</span> <span class="n">calculate_hit_rate</span>
+    <span class="p">}</span>
+    <span class="n">category_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">model_names_variable_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">model_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">qauntile</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;&lt;Q1&#39;</span><span class="p">,</span> <span class="s1">&#39;[Q1,Q2)&#39;</span><span class="p">,</span><span class="s1">&#39;[Q2,Q3)&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;Q3&#39;</span><span class="p">]):</span>
+            <span class="n">temp_dict</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">temp_dict</span><span class="p">[</span><span class="s1">&#39;Model&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_name</span>
+            <span class="n">temp_dict</span><span class="p">[</span><span class="s1">&#39;Quartile&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">qauntile</span>
+            <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_mean&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="p">[</span><span class="n">metric_func_dict</span><span class="p">[</span><span class="n">metric</span><span class="p">](</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">group</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="n">temp_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_stdv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">metric_func_dict</span><span class="p">[</span><span class="n">metric</span><span class="p">](</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">group</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">temp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">temp_dict</span><span class="p">)</span>
+            <span class="n">model_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">model_df</span><span class="p">,</span> <span class="n">temp_df</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">category_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">category_df</span><span class="p">,</span><span class="n">model_df</span> <span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">category_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Quartile&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_mean&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Model&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Mean </span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1"> at k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">category_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Quartile&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">_at_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">_stdv&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Model&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Stand deviation </span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1"> at k = </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="diversity">
+<h3>Diversity<a class="headerlink" href="#diversity" title="Permalink to this headline">¶</a></h3>
+<p>First, we plot the mean and standard deviation of the various evaluation metric values (described above), for each diversity group. <strong>Note</strong>, the group’s (defined on the x axis) collective diversity score  increases as we move along the axis. For instance, the group labelled as “&lt;Q1” represents a cluster of user IDs, where all of the user’s diversity scores are less than the 25th global percentile.</p>
+<div class="section" id="diversity-k-5">
+<h4>Diversity K=5<a class="headerlink" href="#diversity-k-5" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_diversity_dict</span> <span class="o">=</span> <span class="n">calculate_diversity_users</span><span class="p">(</span><span class="n">user_artists</span><span class="p">,</span> <span class="n">user_taggedartists</span><span class="p">)</span>
+<span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_18_0.png" src="_images/Evaluation_18_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_19_0.png" src="_images/Evaluation_19_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_20_0.png" src="_images/Evaluation_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="diversity-k-10">
+<h4>Diversity K=10<a class="headerlink" href="#diversity-k-10" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_22_0.png" src="_images/Evaluation_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_23_0.png" src="_images/Evaluation_23_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_24_0.png" src="_images/Evaluation_24_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="diversity-k-15">
+<h4>Diversity K=15<a class="headerlink" href="#diversity-k-15" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_26_0.png" src="_images/Evaluation_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_27_0.png" src="_images/Evaluation_27_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_diversity_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_28_0.png" src="_images/Evaluation_28_0.png" />
+</div>
+</div>
+<p>Music habits vary considerably across users. An ideal recommender system should be accurately meet the requirements of <em>all users</em>. There is a trend across all examined metrics that users with more uniform tastes are better served than those with a diverse set of tastes. We also notice similar observations as our overall evaluation, in terms of the trends of the precision, recall and hit-rate values for each value of K. The spread of the evaluation metrics either increases or stays the same as user’s listening habitats become more diverse.</p>
+</div>
+</div>
+<div class="section" id="mainstream">
+<h3>Mainstream<a class="headerlink" href="#mainstream" title="Permalink to this headline">¶</a></h3>
+<p>Next, we plot the mean and standard deviation of the various evaluation metric values (described above), for each group of varying ‘mainstreamness’. <strong>Note</strong>, the group’s (defined on the x axis) collective mainstream score  increases as we move along the axis. For instance, the group labelled as “[Q1,Q2)” represents a group of user IDs, where all of the user’s mainstream scores are less than the 50th global percentile, but greater than or equal to the 25th percentile.</p>
+<div class="section" id="mainstream-k-5">
+<h4>Mainstream K = 5<a class="headerlink" href="#mainstream-k-5" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_mainstream_dict</span> <span class="o">=</span> <span class="n">calculate_mainstream_users</span><span class="p">(</span><span class="n">user_artists</span><span class="p">)</span>
+<span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_32_0.png" src="_images/Evaluation_32_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_33_0.png" src="_images/Evaluation_33_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_34_0.png" src="_images/Evaluation_34_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mainstream-k-10">
+<h4>Mainstream K = 10<a class="headerlink" href="#mainstream-k-10" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_36_0.png" src="_images/Evaluation_36_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_37_0.png" src="_images/Evaluation_37_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_38_0.png" src="_images/Evaluation_38_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mainstream-k-15">
+<h4>Mainstream K = 15<a class="headerlink" href="#mainstream-k-15" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_40_0.png" src="_images/Evaluation_40_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_41_0.png" src="_images/Evaluation_41_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_mainstream_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_42_0.png" src="_images/Evaluation_42_0.png" />
+</div>
+</div>
+<p>An ideal artist recommender system should not alienate users with niche music habitats. We notice two main threads:</p>
+<ul class="simple">
+<li><p>the performance of the recommender systems that incorporates the <strong>cosine similarity</strong> <strong>decreases</strong> across much of the examined metrics as user’s listening habitats become more mainstream.</p></li>
+<li><p>the performance of the recommender systems that incorporates the <strong>dot product</strong> <strong>increases</strong> across much of the examined metrics as user’s listening habitats become more mainstream.</p></li>
+</ul>
+<p>These graphs make intitule sense and confirms our observation from our overall evaluation i.e. as dot product takes into account the norm of the vectors, it is more likely to benefits users that listen to mainstream artists. It must be noted that there is no discernable pattern in the spread of the evaluation metrics across mainstream groups. Although we do notice the same observations as our overall evualtion, ie the tendency of the spread to decrease as k increases.</p>
+</div>
+</div>
+<div class="section" id="activity">
+<h3>Activity<a class="headerlink" href="#activity" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we plot the mean and standard deviation of the various evaluation metric values (described above), for each group of varying activity levels. <strong>Note</strong>, the group’s (defined on the x axis) collective activity score increases as we move along the axis. We determine activity in terms of the number of plays a user has made on <a class="reference external" href="http://Last.fm">Last.fm</a>, rather than the amount of artists they have listened to. For instance, the group labelled as “&gt;Q3” represents a cluster of user IDs, where all of the user’s activity scores are greater than the 75th global percentile.</p>
+<div class="section" id="activity-k-5">
+<h4>Activity k = 5<a class="headerlink" href="#activity-k-5" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_activity_dict</span> <span class="o">=</span> <span class="n">calculate_activity</span><span class="p">(</span><span class="n">user_artists</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_47_0.png" src="_images/Evaluation_47_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_48_0.png" src="_images/Evaluation_48_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_49_0.png" src="_images/Evaluation_49_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="k-10">
+<h4>k = 10<a class="headerlink" href="#k-10" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_51_0.png" src="_images/Evaluation_51_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_52_0.png" src="_images/Evaluation_52_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_53_0.png" src="_images/Evaluation_53_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="k-15">
+<h4>K= 15<a class="headerlink" href="#k-15" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_55_0.png" src="_images/Evaluation_55_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_56_0.png" src="_images/Evaluation_56_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_category_evaluation</span><span class="p">(</span><span class="n">split_dict_into_four_groups</span><span class="p">(</span><span class="n">user_activity_dict</span><span class="p">),</span> <span class="s1">&#39;Hit Rate&#39;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Evaluation_57_0.png" src="_images/Evaluation_57_0.png" />
+</div>
+</div>
+<p>There is no discernable trend or bias observed in terms our recommendation’s systems ability to recommend items to users of different activity level. This makes intuitive sense as we use a binary matrix to encode user’s interactions rather than min-max normalizing the listening counts. Perhaps if we did the latter, we would observe increased performance for user’s who interact with <a class="reference external" href="http://Last.fm">Last.fm</a> more. Although there is a slight trend that the performance of models with cosine similarity decrease with increased user activity where as those who incorporate the dot product increase, We also notice that regularization increases a model’s performance significantly, indicating the model generalize well to user’s with different listening habitats.</p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Collaborative_filtering.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Collaborative filtering</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Conclusion.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conclusion</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Anthony Reidy, 18369643<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
