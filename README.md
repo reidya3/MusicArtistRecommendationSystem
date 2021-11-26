@@ -18,9 +18,12 @@
 ## Google Colab
 
 The notebooks in our jupyter book are also available on Google Colab:
+- book\Introduction.ipynb:
+- book\Collaborative_filtering.ipynb
+-
+- book\Evaluation.ipynb
 - 
--
--
+
 
 
 ## Github Link
