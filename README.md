@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Iowa Gambling logo" src="./book/images/music-rec-logo.png" height="115px" />
+  <img alt="Iowa Gambling logo" src="./book/images/music-rec-logo.png" height="270px" />
   <br/>
   Artist Recommendation System (CA4015)
 </h1>
