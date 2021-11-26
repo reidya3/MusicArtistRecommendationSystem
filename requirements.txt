@@ -4,7 +4,6 @@ pyppeteer
 pandas
 sklearn
 seaborn
-mpl_toolkits
 tensorflow
 google
 spotipy
