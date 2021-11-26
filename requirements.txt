@@ -7,3 +7,5 @@ seaborn
 tensorflow
 google
 spotipy
+networkx
+python-louvain
