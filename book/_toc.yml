@@ -4,8 +4,7 @@
 format: jb-book
 root: Introduction
 chapters:
-- file: Initial_Data_Exploration
-- file: Clustering_Analysis
-- file: Federated_k_means
+- file: Collaborative_filtering
+- file: Evaluation
 - file: Conclusion
 - file: References

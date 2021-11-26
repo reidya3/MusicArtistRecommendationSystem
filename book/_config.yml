@@ -3,8 +3,7 @@
 
 title: CA4015 Music Recommendation Task
 author: Anthony Reidy, 18369643
-logo: images/IGT-logo.png
-
+logo: images/music-rec-logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:

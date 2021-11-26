@@ -1,7 +1,7 @@
 <h1 align="center">
-  <img alt="Iowa Gambling logo" src="./book/images/IGT-logo.png" height="115px" />
+  <img alt="Iowa Gambling logo" src="./book/images/music-rec-logo.png" height="115px" />
   <br/>
-  Music (CA4015)
+  Artist Recommendation System (CA4015)
 </h1>
 <h3 align="center">
   Anthony Reidy, 18369643.
@@ -9,13 +9,21 @@
 </h3>
 
 ## Table of Contents
+- [Google Colab links](#google-colab)
 - [Github Link](#github-link)
 - [Development](#development)
 - [Usage](#usage)
 - [Website](#website)
 
+## Google Colab
+The notebooks in our jupyter book are also available on Google Colab:
+- 
+-
+-
+
+
 ## Github Link
-The github link for my assignment is https://github.com/reidya3/CA4015_First_Assignment
+The github link for my assignment is  https://github.com/reidya3/MusicArtistRecommendationSystem 
 
 ## Development
 It is good practice to develop in a virtual environment. Note, this jupyter book was written using `python 3.8` and on the `Ubuntu` (Linux) operating system (OS). As such, all commands are setup for this installation and may not work for other OS's. To create a virtual environment called `venv`, execute:

@@ -4,5 +4,7 @@ pyppeteer
 pandas
 sklearn
 seaborn
-pyclustertend
-yellowbrick
+mpl_toolkits
+tensorflow
+google
+spotipy
