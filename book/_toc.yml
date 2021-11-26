@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: Introduction
+chapters:
+- file: Initial_Data_Exploration
+- file: Clustering_Analysis
+- file: Federated_k_means
+- file: Conclusion
+- file: References

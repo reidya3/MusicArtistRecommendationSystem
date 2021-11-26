@@ -1,0 +1,8 @@
+jupyter-book
+matplotlib
+pyppeteer
+pandas
+sklearn
+seaborn
+pyclustertend
+yellowbrick
