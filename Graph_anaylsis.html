@@ -53,6 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Conclusion" href="Conclusion.html" />
+    <link rel="prev" title="Evaluation" href="Evaluation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -96,7 +98,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Collaborative_filtering.html">
    Collaborative filtering
@@ -105,6 +107,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="Evaluation.html">
    Evaluation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Graph Analysis of Last.FM data.
   </a>
  </li>
  <li class="toctree-l1">
@@ -221,54 +228,45 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Graph Analysis of Last.FM data.
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-of-contents">
+   Table of Contents
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#table-of-contents">
-     Table of Contents
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#importing-libraries-and-data-files">
-     Importing libraries and Data files
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#constructing-the-graphs">
-     Constructing the graphs
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#degree-centrality">
-     Degree centrality
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clustering-coefficient-and-triangular-count">
-     Clustering coefficient and triangular count
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#betweeness-centrality">
-     Betweeness centrality
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#importing-libraries-and-data-files">
+   Importing libraries and Data files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#constructing-the-graphs">
+   Constructing the graphs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#degree-centrality">
+   Degree centrality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering-coefficient-and-triangular-count">
+   Clustering coefficient and triangular count
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#betweeness-centrality">
+   Betweeness centrality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#louvian-modularity">
    Louvian modularity:
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#label-propagation-finding-super-tags">
-     Label Propagation - finding super tags
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#label-propagation-finding-super-tags">
+   Label Propagation - finding super tags
+  </a>
  </li>
 </ul>
 
@@ -283,12 +281,12 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="graph-analysis-of-last-fm-data">
 <h1>Graph Analysis of <a class="reference external" href="http://Last.FM">Last.FM</a> data.<a class="headerlink" href="#graph-analysis-of-last-fm-data" title="Permalink to this headline">¶</a></h1>
-<p>We are interested in performing graph analysis in an attempt to better understand the listening habitats of the <a class="reference external" href="http://Last.FM">Last.FM</a> users. Three undirected graphs <span class="math notranslate nohighlight">\(G(N, E)\)</span> will be constructed that consists of a finite set of nodes <span class="math notranslate nohighlight">\(N\)</span> and a finite set of edges <span class="math notranslate nohighlight">\(E\)</span>. With each edge E of G, there will be an associated real number <span class="math notranslate nohighlight">\(w(E)\)</span>, called its weight.</p>
+<p>Graph analysis is performed in an attempt to better understand the listening habitats of the <a class="reference external" href="http://Last.FM">Last.FM</a> users. Three undirected graphs <span class="math notranslate nohighlight">\(G(N, E)\)</span> are constructed that consists of a finite set of nodes <span class="math notranslate nohighlight">\(N\)</span> and a finite set of edges <span class="math notranslate nohighlight">\(E\)</span>. With each edge E of G, there will be an associated real number <span class="math notranslate nohighlight">\(w(E)\)</span>, called its weight.</p>
 <p><em>Graph_1</em> takes advantage of the present <span class="math notranslate nohighlight">\(friend \longleftrightarrow friend\)</span> relationships detailed in the data. As this is a friendship relationship rather than a follow relationships, the graph is undirected.  In this case,  <span class="math notranslate nohighlight">\(W(E)= 1 \)</span></p>
-<p>Currently in the data, there is  <span class="math notranslate nohighlight">\( user \longleftrightarrow  artist \)</span>  relationships present. In order to analyse this occurrence, we project this bipartite area of
-interest into a monopartite sub-graph. <em>Graph_2</em> contains <span class="math notranslate nohighlight">\( user \longleftrightarrow  user \)</span> edges where <span class="math notranslate nohighlight">\(w(E)= CA\)</span> OR <span class="math notranslate nohighlight">\(w(E)= \frac{1}{CA}\)</span>.
-<span class="math notranslate nohighlight">\(CA\)</span> is the number of common artists between users. The type of weight is dependent on how a particular algorithm views the strength of the relationship.</p>
-<p>As is evident so far in this investigation, the are a large number of tags (11946)  and these user-submitted semantic categories often contain overlap. We construct <em>Graph_3</em> in attempt to find “super tags” i.e. novel tags that effectively covers numerous sub-tags in an attempt to remove redundancy. We believe this may also improve the recommendation system if these novel tags were part  of the <a class="reference external" href="http://Last.fm">Last.fm</a>’s system.  <em>Graph_3</em>  contains <span class="math notranslate nohighlight">\(tag \longleftrightarrow tag\)</span> relationships where <span class="math notranslate nohighlight">\(w(E)\)</span>= number of common artists. If two tags have no overlapping artists, there exists no relationship.</p>
+<p>Currently, there is  <span class="math notranslate nohighlight">\( user \longleftrightarrow  artist \)</span>  relationships present in the data. In order to analyse this occurrence, we project this bipartite area of
+interest into a monopartite sub-graph. <em>Graph_2</em> contains <span class="math notranslate nohighlight">\( user \longleftrightarrow  user \)</span> edges where <span class="math notranslate nohighlight">\(w(E)= CA\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(CA\)</span> is the number of common artists between users.</p>
+<p>As is evident so far in this investigation, the are a large number of tags (11946)  and these user-submitted semantic categories often contain overlap or are junk. We construct <em>Graph_3</em> in attempt to find “super tags” i.e. novel tags that effectively covers numerous sub-tags in an attempt to remove redundancy. We believe this may also improve <a class="reference external" href="http://Last.fm">Last.fm</a>’s recommendation system if these novel tags were part  of the system.  <em>Graph_3</em>  contains <span class="math notranslate nohighlight">\(tag \longleftrightarrow tag\)</span> relationships where <span class="math notranslate nohighlight">\(w(E)\)</span>= number of common artists. If two tags have no overlapping artists, there exists no relationship.</p>
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -352,7 +350,7 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2753</span><span class="o">/</span><span class="mf">2131395244.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2630</span><span class="o">/</span><span class="mf">2131395244.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">user_artists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user_artists.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">user_friendships</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/unqiue_friendships.csv&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tags</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/tags.dat&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -367,7 +365,7 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 </div>
 <div class="section" id="constructing-the-graphs">
 <h2>Constructing the graphs<a class="headerlink" href="#constructing-the-graphs" title="Permalink to this headline">¶</a></h2>
-<p>In order to construct the graphs, we must further construct  a list of vertices and a list of tuples detailing edges in a particular graph.  We use the <em>Graph</em> object as we want an undirected graph. Note, calculating the edges and vertices for <em>Graph_2</em> and <em>Graph_3</em> wil take several hours. Jupyter book raises a run time exception in this scenario. Therefore, we decide to pre-compute the required edges and vertices and saved them into csv files. We only include the code required to construct these graphs for verification purposes.</p>
+<p>In order to construct the graphs, we must further construct  a list of vertices and a list of tuples detailing edges in a particular graph.  We use the <em>Graph</em> object as we want an undirected graph. Note, calculating the edges and vertices for <em>Graph_2</em> and <em>Graph_3</em> wil take several hours. Jupyter book raises a run time exception in this scenario. Therefore, we decide to pre-compute the required edges and vertices and save them into csv files. The code required to construct these graphs is provided for verification purposes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">graph_1</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
@@ -440,6 +438,10 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 <span class="n">graph_2_vertices</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/graph/graph_2_vertices.csv&#39;</span><span class="p">)[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="n">graph_2_edges</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/graph/graph_2_edges.csv&#39;</span><span class="p">)</span>
 <span class="n">graph_2_edges</span> <span class="o">=</span> <span class="n">convert_df_list_tuples</span><span class="p">(</span><span class="n">graph_2_edges</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">graph_3_vertices</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/graph/graph_3_vertices.csv&#39;</span><span class="p">)[</span><span class="s1">&#39;tags&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">graph_3_edges</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/graph/graph_3_edges.csv&#39;</span><span class="p">)</span>
+<span class="n">graph_3_edges</span> <span class="o">=</span> <span class="n">convert_df_list_tuples</span><span class="p">(</span><span class="n">graph_3_edges</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -451,6 +453,9 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 
 <span class="n">graph_2</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">graph_2_vertices</span><span class="p">)</span>
 <span class="n">graph_2</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">graph_2_edges</span><span class="p">)</span>
+
+<span class="n">graph_3</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">graph_3_vertices</span><span class="p">)</span>
+<span class="n">graph_3</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">graph_3_edges</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -458,6 +463,18 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Validation checks of the graphs. </span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_1_vertcies</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_1</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_1_edges</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_1</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+<span class="k">assert</span> <span class="n">graph_1</span><span class="o">.</span><span class="n">get_edge_data</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span>
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_2_vertices</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_2</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_2_edges</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_2</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+<span class="k">assert</span> <span class="n">graph_2</span><span class="o">.</span><span class="n">get_edge_data</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}</span>
+
+
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_3_edges</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_3</span><span class="o">.</span><span class="n">edges</span><span class="p">())</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_3_vertices</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph_3</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="k">assert</span> <span class="n">graph_3</span><span class="o">.</span><span class="n">get_edge_data</span><span class="p">(</span><span class="s1">&#39;chillout&#39;</span><span class="p">,</span> <span class="s1">&#39;downtempo&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="mi">263</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -465,7 +482,7 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 </div>
 <div class="section" id="degree-centrality">
 <h2>Degree centrality<a class="headerlink" href="#degree-centrality" title="Permalink to this headline">¶</a></h2>
-<p>Our initial graphs analysis is very simple. We compute the amount of degrees each nodes has in <em>Graph_1</em> and <em>Graph_2</em>. The degree is the number of links incident upon a node. The nodes are then sorted by degree ascending to find the users that have the most number of friends in <em>Graph_1</em> and the users who listen to the most artists in <em>Graph_2</em>.</p>
+<p>Our initial graphs analysis is very simple. We compute the amount of degrees each nodes has in <em>Graph_1</em> and <em>Graph_2</em>. The degree is the number of links incident upon a node. The nodes are then sorted by degree descending to find the users that have the most number of friends in <em>Graph_1</em> and the users who listen to the most artists in <em>Graph_2</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_five</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">algo_string</span><span class="p">):</span>
@@ -558,7 +575,7 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 <img alt="_images/Graph_anaylsis_15_0.png" src="_images/Graph_anaylsis_15_0.png" />
 </div>
 </div>
-<p>The above figure plots the degree centrality distribution for <em>graph_1</em>. As expected, the distribution histogram of degree centrality has a long tail, which means their are few people have a lot of friends while most of people have a relatively small number of friends.</p>
+<p>The above figure plots the degree centrality distribution of <em>graph_1</em>. As expected, the distribution histogram of degree centrality has a long tail, which means their are few people have a lot of friends while most of people have a relatively small number of friends.</p>
 <p><em>Graph_2</em>: The top five users who have listened to the most amount of artists.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -634,15 +651,15 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 <img alt="_images/Graph_anaylsis_19_0.png" src="_images/Graph_anaylsis_19_0.png" />
 </div>
 </div>
-<p>Again, The above plot describes the degree centrality distribution for <em>graph_2</em>.  The distribution is only slightly right skewed. This indicates that the userbase of <a class="reference external" href="http://Last.fm">Last.fm</a> generally listens to a limited number of artists with a significant number also listening to a wide range of artists.</p>
+<p>Again, the above plot describes the degree centrality distribution of <em>graph_2</em>.  The distribution is only slightly right skewed. This indicates that the userbase of <a class="reference external" href="http://Last.fm">Last.fm</a> generally listens to a limited number of artists with a significant number also listening to a wide range of artists.</p>
 </div>
 <div class="section" id="clustering-coefficient-and-triangular-count">
 <h2>Clustering coefficient and triangular count<a class="headerlink" href="#clustering-coefficient-and-triangular-count" title="Permalink to this headline">¶</a></h2>
-<p>Triangular count refers to the number of triangles or 3-clique for each node in a graph. A triangle is a set of three nodes where each node has a relationship to the other two. Triangular count is particularly useful in social media analysis where it is used to detect communities and model cohesiveness. It also used as part is used as part of the local clustering coefficient algorithm (<span class="math notranslate nohighlight">\(C_{n}\)</span>) of a node n. . This algorithm describes the likelihood ([0,1]) that n’s neighbour’s  are also connected. <strong>Note</strong>, this algorithm is computed for each node. For unweighted graphs like <em>graph_1</em>,
+<p>Triangular count refers to the number of triangles or 3-clique for each node in a graph. A triangle is a set of three nodes where each node has a relationship to the other two. Triangular count is particularly useful in social media analysis where it is used to detect communities and graph cohesiveness. It also used as part is used as part of the local clustering coefficient algorithm (<span class="math notranslate nohighlight">\(C_{n}\)</span>) of a node n. . This algorithm describes the likelihood ([0,1]) that n’s neighbour’s  are also connected. <strong>Note</strong>, this algorithm is computed for each node. For unweighted graphs like <em>graph_1</em>,
 <span class="math notranslate nohighlight">\(
 C_{n} = \frac{2T_{n}}{d_{n}(d_{n}) - 1}
 \)</span>
-where <span class="math notranslate nohighlight">\(T_{n}\)</span> is the number of traingles that node n is part of, and <span class="math notranslate nohighlight">\(d_{n}\)</span> is the degree of node n.</p>
+where <span class="math notranslate nohighlight">\(T_{n}\)</span> is the number of triangles that node n is part of, and <span class="math notranslate nohighlight">\(d_{n}\)</span> is the degree of node n.</p>
 <p>For weighted graphs like <em>Graph_2</em>, there are several ways to define clustering (<a class="reference external" href="https://link.aps.org/pdf/10.1103/PhysRevE.75.027105">Saramäki et al, 2007</a>). Networkx’s uses the geometric average of the subgraph edge weights, that is
 <span class="math notranslate nohighlight">\(
 C_{n} = \frac{1}{d_{n}(d_{n}) - 1} \sum_{vw}{} (\hat{w}_{uv}\hat{w}_{uw}\hat{w}_{vw})^{\frac{1}{3}}
@@ -669,14 +686,10 @@ Note, if <span class="math notranslate nohighlight">\(d_{n}\)</span> &lt; 2, it 
 </div>
 </div>
 <p>0.06315564340785443</p>
-<p>Globally, the <em>graph_1</em> projection  has an average clustering coefficient of 0.186544.  This indicates, on average, a user’s friends have a probability of 18.6% of also being friends.  This indicates that the social network of <a class="reference external" href="http://Last.fm">Last.fm</a> is not  tight knit together but
-rather sparse. A network with a higher average clustering coefficient is often called a small world network which  graph does not show.</p>
-<p>Similarly, the <em>graph_2</em>  projection  has an average clustering coefficient of 0.0631556.   This indicates that the music taste of <a class="reference external" href="http://Last.fm">Last.fm</a>’s users are
-rather sparse, with each artist’s audience being unlikely to listen to the same artist.</p>
 </div>
 <div class="section" id="betweeness-centrality">
 <h2>Betweeness centrality<a class="headerlink" href="#betweeness-centrality" title="Permalink to this headline">¶</a></h2>
-<p>Betweenness centrality detects the amount of influence a node has over the flow of information in a graph i.e. detecting ‘bridge points’ between one part of a graph to another. From graph_1, we interrupt these bridging nodes as famous Djs or prominent influencers within the graph. From graph_2, we interpret these bridging nodes as people with varied music tastes, joining users with almost mono music interest.</p>
+<p>Betweenness centrality detects the amount of influence a node has over the flow of information in a graph i.e. detecting ‘bridge points’ between one part of a graph to another. For <em>graph_1</em>, we interrupt these bridging nodes as famous Djs or prominent influencers within the graph. For <em>graph_2</em>, we interpret these bridging nodes as people with varied music tastes, joining users with almost mono music interest.</p>
 <p><em>Graph_1</em>: The most influential users of <a class="reference external" href="http://Last.FM">Last.FM</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -745,55 +758,67 @@ rather sparse, with each artist’s audience being unlikely to listen to the sam
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">206</span><span class="o">-</span><span class="mi">0</span><span class="n">a7a36d64161</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">get_five</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">betweenness_centrality</span><span class="p">(</span><span class="n">graph_2</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span> <span class="s2">&quot;Degree Centrality&quot;</span><span class="p">)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">&lt;decorator-gen-250&gt;</span> in <span class="ni">betweenness_centrality</span><span class="nt">(G, k, normalized, weight, endpoints, seed)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">~\anaconda3\lib\site-packages\networkx\utils\decorators.py</span> in <span class="ni">_random_state</span><span class="nt">(func, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span>         <span class="n">new_args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span>         <span class="n">new_args</span><span class="p">[</span><span class="n">random_state_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">random_state</span>
-<span class="ne">--&gt; </span><span class="mi">464</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">new_args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">465</span>     <span class="k">return</span> <span class="n">_random_state</span>
-
-<span class="nn">&lt;decorator-gen-249&gt;</span> in <span class="ni">betweenness_centrality</span><span class="nt">(G, k, normalized, weight, endpoints, seed)</span>
-
-<span class="nn">~\anaconda3\lib\site-packages\networkx\utils\decorators.py</span> in <span class="ni">_not_implemented_for</span><span class="nt">(not_implement_for_func, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span>             <span class="k">raise</span> <span class="n">nx</span><span class="o">.</span><span class="n">NetworkXNotImplemented</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">81</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">82</span>             <span class="k">return</span> <span class="n">not_implement_for_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span>     <span class="k">return</span> <span class="n">_not_implemented_for</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span> 
-
-<span class="nn">~\anaconda3\lib\site-packages\networkx\algorithms\centrality\betweenness.py</span> in <span class="ni">betweenness_centrality</span><span class="nt">(G, k, normalized, weight, endpoints, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span>         <span class="c1"># single source shortest paths</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>         <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># use BFS</span>
-<span class="ne">--&gt; </span><span class="mi">136</span>             <span class="n">S</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">_single_source_shortest_path_basic</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span>         <span class="k">else</span><span class="p">:</span>  <span class="c1"># use Dijkstra&#39;s algorithm</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>             <span class="n">S</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">_single_source_dijkstra_path_basic</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
-
-<span class="nn">~\anaconda3\lib\site-packages\networkx\algorithms\centrality\betweenness.py</span> in <span class="ni">_single_source_shortest_path_basic</span><span class="nt">(G, s)</span>
-<span class="g g-Whitespace">    </span><span class="mi">266</span>                 <span class="n">Q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">267</span>                 <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">Dv</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="ne">--&gt; </span><span class="mi">268</span>             <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">==</span> <span class="n">Dv</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>   <span class="c1"># this is a shortest path, count paths</span>
-<span class="g g-Whitespace">    </span><span class="mi">269</span>                 <span class="n">sigma</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sigmav</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span>                 <span class="n">P</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># predecessors</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>userID</th>
+      <th>Degree Centrality</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1989</td>
+      <td>0.001067</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>240</td>
+      <td>0.000911</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1914</td>
+      <td>0.000769</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>458</td>
+      <td>0.000761</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1368</td>
+      <td>0.000743</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="louvian-modularity">
-<h1>Louvian modularity:<a class="headerlink" href="#louvian-modularity" title="Permalink to this headline">¶</a></h1>
-<p>Louvian modularity is not part of the official networkx library. Therefore, we decide to use the python-louvian package. Louvain modularity is used to find communities, hierarchies and/or evaluate different grouping
-thresholds. Louvain modularity compares relationship densities in given clusters to densities between clusters i.e. we want a lot of connections in the set and few connections outside the set. We apply this algorithm to Graph_1 and Graph_2 to find:</p>
-<p>(a) distinct social communities
-(b) distinct communities of similar music tastes</p>
+<div class="section" id="louvian-modularity">
+<h2>Louvian modularity:<a class="headerlink" href="#louvian-modularity" title="Permalink to this headline">¶</a></h2>
+<p>Louvian modularity is not part of the official networkx library. Therefore, we decide to use the <code class="docutils literal notranslate"><span class="pre">python-louvian</span></code> package. Louvain modularity is used to find communities, hierarchies and/or evaluate different grouping
+thresholds. Louvain modularity compares relationship densities in given clusters to densities between clusters i.e. we want a lot of connections in the set and few connections outside the set. We apply this algorithm to <em>Graph_1</em> and <em>Graph_2</em> to find:</p>
+<ul class="simple">
+<li><p>(a) distinct social communities</p></li>
+<li><p>(b) distinct communities of similar music tastes</p></li>
+</ul>
 <p>We relate (b) to the tags, in an effort to see if there is a correlation between the implicit data of artist listenership vs the explicit data of user-submitted tags.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -812,7 +837,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_33_0.png" src="_images/Graph_anaylsis_33_0.png" />
+<img alt="_images/Graph_anaylsis_32_0.png" src="_images/Graph_anaylsis_32_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -827,7 +852,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_34_0.png" src="_images/Graph_anaylsis_34_0.png" />
+<img alt="_images/Graph_anaylsis_33_0.png" src="_images/Graph_anaylsis_33_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -837,7 +862,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Louvian modularity identifies 31 communities in the social network graph
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Louvian modularity identifies 33 communities in the social network graph
 </pre></div>
 </div>
 </div>
@@ -849,7 +874,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modularity score for the partition: 0.46348710904915386
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modularity score for the partition: 0.45093205542255865
 </pre></div>
 </div>
 </div>
@@ -871,7 +896,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_38_0.png" src="_images/Graph_anaylsis_38_0.png" />
+<img alt="_images/Graph_anaylsis_37_0.png" src="_images/Graph_anaylsis_37_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -881,7 +906,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Louvian modularity identifies 3 communities in  graph 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Louvian modularity identifies 2 communities in  graph 2
 </pre></div>
 </div>
 </div>
@@ -893,7 +918,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modularity score for the partition : 0.27823896728792585
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Modularity score for the partition : 0.28234715583451236
 </pre></div>
 </div>
 </div>
@@ -910,7 +935,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_41_0.png" src="_images/Graph_anaylsis_41_0.png" />
+<img alt="_images/Graph_anaylsis_40_0.png" src="_images/Graph_anaylsis_40_0.png" />
 </div>
 </div>
 <p>These form during the algorithms second pass where several of the possible intuitive communities are merged together. Louvian modulairty has the power to  reveal hierarchy of communities at different scales. The function <code class="docutils literal notranslate"><span class="pre">generate_dendrogram</span></code> gives us a dictionary mapping from level of hierarchy to the partition. Finally, <code class="docutils literal notranslate"><span class="pre">partition_at_level</span></code> takes the result of <code class="docutils literal notranslate"><span class="pre">generate_dendrogram</span></code> and returns a dictionary of the partition, where keys are nodes and values are the index of partition the node belongs to. We use to find the level with the most number of communities.</p>
@@ -925,7 +950,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Community Node Distribution(Hierarchical Clustering): Counter({0: 1126, 1: 581, 2: 178})
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Community Node Distribution(Hierarchical Clustering): Counter({0: 1097, 1: 589, 2: 199})
 </pre></div>
 </div>
 </div>
@@ -939,10 +964,10 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_44_0.png" src="_images/Graph_anaylsis_44_0.png" />
+<img alt="_images/Graph_anaylsis_43_0.png" src="_images/Graph_anaylsis_43_0.png" />
 </div>
 </div>
-<p>Unfortunately, no new insights or a  greater number of communities were revealed when we reviewed the different levels of partitions. Finally, we plot the top ten tags by occurrence in these communities.</p>
+<p>Unfortunately, only a marginal number of additional communities were revealed when we reviewed the different levels of partitions. Finally, the top ten tags by occurrence are plotted in these communities.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">community_user_id_dict</span> <span class="o">=</span>  <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
@@ -967,145 +992,39 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_47_0.png" src="_images/Graph_anaylsis_47_0.png" />
-<img alt="_images/Graph_anaylsis_47_1.png" src="_images/Graph_anaylsis_47_1.png" />
-<img alt="_images/Graph_anaylsis_47_2.png" src="_images/Graph_anaylsis_47_2.png" />
+<img alt="_images/Graph_anaylsis_46_0.png" src="_images/Graph_anaylsis_46_0.png" />
+<img alt="_images/Graph_anaylsis_46_1.png" src="_images/Graph_anaylsis_46_1.png" />
+<img alt="_images/Graph_anaylsis_46_2.png" src="_images/Graph_anaylsis_46_2.png" />
 </div>
 </div>
-<p>We observe some commonality in these two communities. For instance, rock, electronic, pop, alternative were present in the top 10 assigned tags in both communities. Although these are also the top four global tags, so we would expect this given the small number of communities identified.</p>
+<p>We observe some commonality in these two communities. For instance, rock, electronic, pop, alternative were present in the top 10 assigned tags in all three communities. Although these are also the top four global tags, so we would expect this given the small number of communities identified.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 </div>
-<p>Besides this, we observe a clear distinction in music tastes among the two clusters. Cluster 0 has a more of tendency to listen to rock and sub genres of rock where as community 1 listens to 90s and dance music.</p>
+<p>Besides this, we observe a clear distinction in music tastes among the three clusters. Cluster 0 has a more of tendency to listen to rock and sub genres of rock where as community 1 listens to 90s and dance music. Community 2 seems to follow the mainstream, with little defining music taste.</p>
+</div>
 <div class="section" id="label-propagation-finding-super-tags">
 <h2>Label Propagation - finding super tags<a class="headerlink" href="#label-propagation-finding-super-tags" title="Permalink to this headline">¶</a></h2>
-<p>Similar to Louvian Modulaity, Label Propagation is used to find communities within a graph.  After initializing each node with a unique label, the algorithm repeatedly sets the label of a node to be the label that appears most frequently among that nodes neighbors. The algorithm halts when each node has the label that appears most frequently among its neighbors. From this notation of ‘projected labeling’, spun out the idea of creating “super tags” in effort to reduce redundancy. We envision that these novel tags could be incorporated into Last.fMs retrieval or recommendation systems. This algorithim is applied to graph_3.</p>
+<p>Similar to Louvian Modulaity, Label Propagation is used to find communities within a graph.  After initializing each node with a unique label, the algorithm repeatedly sets the label of a node to be the label that appears most frequently among that nodes neighbors. The algorithm halts when each node has the label that appears most frequently among its neighbors. From this notation of ‘projected labeling’, spun out the idea of creating “super tags” in an effort to reduce redundancy. We envision that these novel tags could be incorporated into Last.fMs retrieval or recommendation systems. This algorithm is applied to <em>graph_3</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_taggedartists</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">community</span><span class="o">.</span><span class="n">label_propagation</span><span class="o">.</span><span class="n">label_propagation_communities</span><span class="p">(</span><span class="n">graph_3</span><span class="p">))</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="p">([</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">c</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>userID</th>
-      <th>artistID</th>
-      <th>tagID</th>
-      <th>timestamp</th>
-      <th>tagValue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2</td>
-      <td>52</td>
-      <td>13</td>
-      <td>1238536800000</td>
-      <td>chillout</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>63</td>
-      <td>13</td>
-      <td>1238536800000</td>
-      <td>chillout</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>73</td>
-      <td>13</td>
-      <td>1238536800000</td>
-      <td>chillout</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2</td>
-      <td>94</td>
-      <td>13</td>
-      <td>1238536800000</td>
-      <td>chillout</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2</td>
-      <td>6177</td>
-      <td>13</td>
-      <td>1241128800000</td>
-      <td>chillout</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>186474</th>
-      <td>2096</td>
-      <td>1124</td>
-      <td>6027</td>
-      <td>1280613600000</td>
-      <td>20th century classical</td>
-    </tr>
-    <tr>
-      <th>186475</th>
-      <td>2096</td>
-      <td>7932</td>
-      <td>12645</td>
-      <td>1304678921912</td>
-      <td>symbiosis</td>
-    </tr>
-    <tr>
-      <th>186476</th>
-      <td>2096</td>
-      <td>8438</td>
-      <td>12645</td>
-      <td>1280613600000</td>
-      <td>symbiosis</td>
-    </tr>
-    <tr>
-      <th>186477</th>
-      <td>2096</td>
-      <td>13890</td>
-      <td>12645</td>
-      <td>1283292000000</td>
-      <td>symbiosis</td>
-    </tr>
-    <tr>
-      <th>186478</th>
-      <td>2096</td>
-      <td>18513</td>
-      <td>12645</td>
-      <td>1280613600000</td>
-      <td>symbiosis</td>
-    </tr>
-  </tbody>
-</table>
-<p>186479 rows × 5 columns</p>
-</div></div></div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;jaebeom&#39;, &#39;park jaebum&#39;, &#39;park jaebeom&#39;, &#39;jaebum&#39;, &#39;jaywalkers&#39;]
+[&#39;kwasa&#39;, &#39;angola&#39;, &#39;semba&#39;]
+[&#39;underground hip hp&#39;, &#39;luso hip hop&#39;, &#39;hip hop under&#39;, &#39;raptuga&#39;, &#39;hip hop angolano&#39;]
+</pre></div>
 </div>
+</div>
+</div>
+<p>When these clusters were examined, we found some intuitive examples. For example, the tags ‘underground hip hop’,’luso hip hop’, ‘hip hop under’, ‘raptuga’, and ‘hip hop angolano’ being clustered together. They are all sub-groups of hip-hop. The tags ‘kwasa’, ‘angola’, ‘semba’ are all types of traditional   music, originating from central and south-western Africa. Finally, the first clustering group’s tags all relate to the Korean-American rapper Jay Park. This example demonstrates our overall goal of removing redundancy.</p>
 </div>
 </div>
 
@@ -1133,7 +1052,21 @@ thresholds. Louvain modularity compares relationship densities in given clusters
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Evaluation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Evaluation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Conclusion.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conclusion</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>

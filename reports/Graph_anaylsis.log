@@ -28,7 +28,7 @@ tags = pd.read_csv(open('data/tags.dat', errors='replace'), sep='\t')
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/tmp/ipykernel_2753/2131395244.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_2630/2131395244.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0muser_artists[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0;34m'data/user_artists.dat'[0m[0;34m,[0m [0msep[0m[0;34m=[0m[0;34m'\t'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      2[0m [0muser_friendships[0m [0;34m=[0m  [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0;34m'data/unqiue_friendships.csv'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [1;32m      3[0m [0mtags[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0mopen[0m[0;34m([0m[0;34m'data/tags.dat'[0m[0;34m,[0m [0merrors[0m[0;34m=[0m[0;34m'replace'[0m[0;34m)[0m[0;34m,[0m [0msep[0m[0;34m=[0m[0;34m'\t'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m

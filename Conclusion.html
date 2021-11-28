@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="References" href="References.html" />
-    <link rel="prev" title="Evaluation" href="Evaluation.html" />
+    <link rel="prev" title="Graph Analysis of Last.FM data." href="Graph_anaylsis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -105,6 +105,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="Evaluation.html">
    Evaluation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Graph_anaylsis.html">
+   Graph Analysis of Last.FM data.
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -232,7 +237,7 @@
 <li><p>The choice of similarity measure proved to be the most significant indicator of performance. As mentioned previously, cosine similarity just takes into account the angle where as dot product takes into account the angle <strong>and</strong> magnitude. The choice of similarity measure is highly domain-specific for in-silico applications. For instance, in information retrieval, the dot product will take the document length into account, whereas the cosine similarity will not. For our use case, the dot product is biased towards mainstream artists i.e. it is more likely to recommend artist with a larger following. We suggest this hypothesis as mainstream artists embeddings tend to have larger norms.  This observation is particularity pronounced when we examine users with varying predispositions to mainstream listenership. We notice that performance of models that incorporated the cosine similarity degraded as user’s listening habitats became more mainstream where as the opposite is true for models that incorporated the dot product. Overall, models that used the cosine similarity performed better than those who did not.</p></li>
 <li><p>There was no distinguishable trends when examining the performance of our models with users of varying activity levels. This is most certainly due to the way we encode user interactions through a binary matrix.</p></li>
 <li><p>The social network of <a class="reference external" href="http://Last.fm">Last.fm</a> does the observe the qualities of a small-world network. We did not observe a small-world phenomenon of users being linked together by a short chain of acquaintances. This is likely due to the fact that <a class="reference external" href="http://Last.fm">Last.fm</a> is not a social network or messaging service.</p></li>
-<li><p>Label propagation was effective in removing redundancy of user-submitted tags. The newly identified communities of tags  were intuitive.  For instance, being clustered together.</p></li>
+<li><p>Label propagation was effective in removing redundancy of user-submitted tags. The newly identified communities of tags  were intuitive.  For instance, ‘underground hip hp’, ‘luso hip hop’, ‘hip hop under’, ‘raptuga’, and ‘hip hop angolano’ being clustered together.</p></li>
 </ol>
 <div class="section" id="future-work">
 <h2>Future work<a class="headerlink" href="#future-work" title="Permalink to this headline">¶</a></h2>
@@ -265,11 +270,11 @@
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="Evaluation.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="Graph_anaylsis.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Evaluation</p>
+            <p class="prev-next-title">Graph Analysis of Last.FM data.</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="References.html" title="next page">

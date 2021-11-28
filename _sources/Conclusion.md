@@ -16,7 +16,7 @@ Our most significant results are the following:
 
 6. The social network of Last.fm does the observe the qualities of a small-world network. We did not observe a small-world phenomenon of users being linked together by a short chain of acquaintances. This is likely due to the fact that Last.fm is not a social network or messaging service. 
 
-7. Label propagation was effective in removing redundancy of user-submitted tags. The newly identified communities of tags  were intuitive.  For instance, being clustered together. 
+7. Label propagation was effective in removing redundancy of user-submitted tags. The newly identified communities of tags  were intuitive.  For instance, 'underground hip hp', 'luso hip hop', 'hip hop under', 'raptuga', and 'hip hop angolano' being clustered together. 
 
 
 ## Future work
