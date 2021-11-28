@@ -5,7 +5,7 @@ format: jb-book
 root: Introduction
 chapters:
 - file: Collaborative_filtering
-#- file: Softmax_model
+- file: Softmax_model
 - file: Evaluation
 - file: Graph_anaylsis
 - file: Conclusion

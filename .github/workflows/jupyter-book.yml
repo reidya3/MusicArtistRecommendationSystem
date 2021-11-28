@@ -1,5 +1,5 @@
 # This workflow will install Python dependencies, build the jupyter book and publish the book's HTML to github pages
-name: Iowa Gambling Clustering Task
+name: Artist Recommendation Task
 
 on:
   push:

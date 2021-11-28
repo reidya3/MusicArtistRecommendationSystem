@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 book/_build/
-
+book/_build/
 # C extensions
 *.so
 .vscode
