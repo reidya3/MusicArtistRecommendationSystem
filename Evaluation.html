@@ -94,7 +94,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Introduction.html">
-   CA4015 - Music Recommendation System
+   Music Recommendation System
   </a>
  </li>
 </ul>
@@ -342,41 +342,49 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="evaluation">
 <h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h1>
 <p>One of the key requirements in developing a recommendation algorithm is to measure it’s  effectiveness. Typical metrics include mean squared error, root mean squared error, precision and recall. It must be noted that evaluating performance on a fixed test dataset will be biased as it is impossible to accurately predict the reactions of real users to the recommendations. Hence, any metric computed on static data will be some-what imprecise. Of course, in real-world settings, this is overcome by online A/B tests.</p>
-<p>In this investigation, we set a small amount of users as hold-out for evaluation, fitting a model to all of the remaining users and artists. From these ‘evaluation users’, 15 of their interactions data is set as a hold-out test set, while their latent factors are computed using the rest of the data and the previously fitted model from the other users.Then , the top-k recommendations for each user are collected. These top-k artists are compared against the hold-out test items (15 in total), seeing how well they do at ranking them near the top vs. how they rank the remainder of the items.</p>
-<p>As the data is implicit, the evaluation criteria  is akin to Information retrieval systems. The metrics we will use include:</p>
+<p>In this investigation, we set a small amount of users as hold-out for evaluation, fitting a model to all of the remaining users and artists. From these ‘evaluation users’, 15 of their interactions data is set as a hold-out test set .Then , the top-k recommendations for each user are collected. These top-k artists are compared against the hold-out test items, seeing how well they do at ranking them near the top vs. how they rank the remainder of the items.</p>
+<p>The fact that the data is implicit, motivates us to choose evaluation criteria  that is akin to evaluating information retrieval systems. We view the problem as ranking or classification instead of regression task, with the models being evaluated not by how well they perform at predicting listening counts, but by how good they are at scoring the observed interactions higher than the non-observed interactions for each user. The metrics we will use include:</p>
 <ul class="simple">
-<li><p><em>P&#64;k (“precision-at-k”)</em>: This metric calculates the proportion of the top-k  recommendations that include items from the test set for a given user - i.e.
-$<span class="math notranslate nohighlight">\(
-P&#64;k =
-\frac{1}{k}
-\sum_{i=1}^{k}
-\begin{cases}
-  1 &amp; \text{if \)</span>r_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
-  0 &amp; \text{otherwise}
-\end{cases}
-\)</span><span class="math notranslate nohighlight">\(
-Where \)</span>r_{i}<span class="math notranslate nohighlight">\( is the item ranked at position i by the model (sorting the predicted scores in descending order), and \)</span>\tau$ is the set of items that are in the test set for that user. Then, we calculate the mean and standard deviation  of these values to allow for comparison between the models.</p></li>
-<li><p>R&#64;k (“recall-at-k”): while P&#64;k captures what a recommender system aims at being good at, it does not capture the fact that, the more test items there are, the higher the chances that they will be included in the top-K recommendations. The test set includes 15 items for each user. This metric examines the  proportion of the test artists would have been retrieved with the top-k recommended list:
-$<span class="math notranslate nohighlight">\(
-R&#64;k =
-\frac{1}{|\tau|}
-\sum_{i=1}^{k}
-\begin{cases}
-  1 &amp; \text{if \)</span>r_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
-  0 &amp; \text{otherwise}
-\end{cases}
-\)</span>$
-Again, we take the mean and standard deviation of this metric to allow comparison.</p></li>
-<li><p>Hit&#64;k (“Hit Rate at k” ): This is a simple Binary metric that examines whether any of the top-k recommended artists were in the test set for a given user:
-$<span class="math notranslate nohighlight">\(
-\max_{{i=1...k}}=
-\begin{cases}
-  1 &amp; \text{if \)</span>r_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
-  0 &amp; \text{otherwise}
-\end{cases}
-\)</span>$
-Again, we take the mean and standard deviation of this metric to allow comparison.</p></li>
+<li><p><em>P&#64;k (“precision-at-k”)</em>: This metric calculates the proportion of the top-k  recommendations that include items from the test set for a given user - i.e.</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  P&#64;k =
+  \frac{1}{k}
+  \sum_{i=1}^{k}
+  \begin{cases}
+    1 &amp; \text{if $r_{i} \in \tau $} \\
+    0 &amp; \text{otherwise}
+  \end{cases}
+\end{split}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(r_{i}\)</span> is the item ranked at position i by the model (sorting the predicted scores in descending order), and <span class="math notranslate nohighlight">\(\tau\)</span> is the set of items that are in the test set for that user. Then, we calculate the mean and standard deviation  of these values to allow for comparison between the models.</p>
+<ul class="simple">
+<li><p>R&#64;k (“recall-at-k”): while P&#64;k captures what a recommender system aims at being good at, it does not capture the fact that, the more test items there are, the higher the chances that they will be included in the top-K recommendations. The test set includes 15 items for each user. This metric examines the  proportion of the test artists would have been retrieved with the top-k recommended list:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  R&#64;k =
+  \frac{1}{|\tau|}
+  \sum_{i=1}^{k}
+  \begin{cases}
+    1 &amp; \text{if $r_{i} \in \tau $} \\
+    0 &amp; \text{otherwise}
+  \end{cases}
+\end{split}\]</div>
+<p>Again, we take the mean and standard deviation of this metric to allow comparison.</p>
+<ul class="simple">
+<li><p>Hit&#64;k (“Hit Rate at k” ): This is a simple Binary metric that examines whether any of the top-k recommended artists were in the test set for a given user:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \max_{{i=1...k}}=
+  \begin{cases}
+    1 &amp; \text{if $r_{i} \in \tau $} \\
+    0 &amp; \text{otherwise}
+  \end{cases}
+\end{split}\]</div>
+<p>Again, we take the mean and standard deviation of this metric to allow comparison.</p>
+<p>A simple baseline is used. Each user is assigned the top 15 artists by user-artist interaction.</p>
 <div class="section" id="quick-links">
 <h2>Quick links:<a class="headerlink" href="#quick-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -417,7 +425,7 @@ Again, we take the mean and standard deviation of this metric to allow compariso
 </div>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>Importing the required data files and libraries. We also define the functions required for each metric in this section. Please view the function string for more in-depth explanation.</p>
+<p>In this section, we import the required data files and libraries. We also define the functions required for each metric. Please view the function string for more in-depth explanation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -437,13 +445,27 @@ Again, we take the mean and standard deviation of this metric to allow compariso
 </div>
 </div>
 </div>
+<p>Constructing baseline</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">construct_baseline</span><span class="p">(</span><span class="n">user_artists</span><span class="p">,</span> <span class="n">test_set</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Constructs a simple baseline.</span>
+<span class="sd">        Each user is assigned the top 15 artist by user-artist interaction&quot;&quot;&quot;</span>
+    <span class="n">top_artists</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">user_artists</span><span class="p">[[</span><span class="s1">&#39;artistID&#39;</span><span class="p">,</span><span class="s1">&#39;userID&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;artistID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;userID&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)[</span><span class="s2">&quot;artistID&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">baseline_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;userID&#39;</span><span class="p">:</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span><span class="s1">&#39;predictions_artists&#39;</span><span class="p">:([</span><span class="n">top_artists</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">()))})</span>
+    <span class="k">return</span> <span class="n">baseline_df</span>
+<span class="n">basline_model</span> <span class="o">=</span> <span class="n">construct_baseline</span><span class="p">(</span><span class="n">user_artists</span><span class="p">,</span> <span class="n">test_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_precision</span><span class="p">(</span><span class="n">model_recommended_items</span><span class="p">,</span><span class="n">test_set</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">unique_users</span><span class="o">=</span><span class="n">test_set</span><span class="o">.</span><span class="n">userID</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span>
     <span class="sd">&quot;&quot;&quot;Calculate precision as defined above</span>
 <span class="sd">    Args:</span>
 <span class="sd">        model_recommended_items: a dataframe containing userIDs, their top 15 artists by a defined model, and the correspnding scores.</span>
-<span class="sd">        test_Set: the test set as defined above, contains 20 items</span>
+<span class="sd">        test_Set: the test set as defined above, contains 15 items</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        the mean and standard deviation of the precision values of the users</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -463,7 +485,7 @@ Again, we take the mean and standard deviation of this metric to allow compariso
     <span class="sd">&quot;&quot;&quot;Calculate recall as defined above</span>
 <span class="sd">    Args:</span>
 <span class="sd">        model_recommended_items: a dataframe containing userIDs, their top 15 artists by a defined model, and the correspnding scores.</span>
-<span class="sd">        test_Set: the test set as defined above, contains 20 items</span>
+<span class="sd">        test_Set: the test set as defined above, contains 15 items</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        the mean and standard deviation of the recall values of the users</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -481,7 +503,7 @@ Again, we take the mean and standard deviation of this metric to allow compariso
     <span class="sd">&quot;&quot;&quot;Calculate hit-rate as defined above</span>
 <span class="sd">    Args:</span>
 <span class="sd">        model_recommended_items: a dataframe containing userIDs, their top 15 artists by a defined model, and the correspnding scores.</span>
-<span class="sd">        test_Set: the test set as defined above, contains 20 items</span>
+<span class="sd">        test_Set: the test set as defined above, contains 15 items</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        the mean and standard deviation of the hit-rate values of the users</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -502,6 +524,7 @@ Again, we take the mean and standard deviation of this metric to allow compariso
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_names_variable_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Baseline&quot;</span><span class="p">:</span> <span class="n">basline_model</span><span class="p">,</span>
     <span class="s2">&quot;SGD_Matrix_Fact_vanilla_dot&quot;</span><span class="p">:</span> <span class="n">vanilla_dot_pred</span><span class="p">,</span>
     <span class="s2">&quot;SGD_Matrix_Fact_vanilla_cosine&quot;</span><span class="p">:</span><span class="n">vanilla_cos_pred</span><span class="p">,</span>
     <span class="s2">&quot;SGD_Matrix_Fact_regularized_dot&quot;</span><span class="p">:</span><span class="n">reg_dot_pred</span><span class="p">,</span>
@@ -578,43 +601,53 @@ Again, we take the mean and standard deviation of this metric to allow compariso
   <tbody>
     <tr>
       <th>0</th>
+      <td>Baseline</td>
+      <td>0.031240</td>
+      <td>0.010413</td>
+      <td>0.141170</td>
+      <td>0.081260</td>
+      <td>0.027087</td>
+      <td>0.348197</td>
+    </tr>
+    <tr>
+      <th>0</th>
       <td>SGD_Matrix_Fact_vanilla_dot</td>
-      <td>0.033387</td>
-      <td>0.011129</td>
-      <td>0.144928</td>
-      <td>0.087315</td>
-      <td>0.029105</td>
-      <td>0.352028</td>
+      <td>0.035212</td>
+      <td>0.011737</td>
+      <td>0.150295</td>
+      <td>0.088919</td>
+      <td>0.029640</td>
+      <td>0.357361</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_vanilla_cosine</td>
-      <td>0.257112</td>
-      <td>0.085704</td>
-      <td>0.713366</td>
-      <td>0.221936</td>
-      <td>0.073979</td>
-      <td>0.452189</td>
+      <td>0.264842</td>
+      <td>0.088281</td>
+      <td>0.727858</td>
+      <td>0.219607</td>
+      <td>0.073202</td>
+      <td>0.445062</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_regularized_dot</td>
-      <td>0.082662</td>
-      <td>0.027554</td>
-      <td>0.341922</td>
-      <td>0.126538</td>
-      <td>0.042179</td>
-      <td>0.474353</td>
+      <td>0.078798</td>
+      <td>0.026266</td>
+      <td>0.328502</td>
+      <td>0.124231</td>
+      <td>0.041410</td>
+      <td>0.469669</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_regularized_cosine</td>
-      <td>0.268062</td>
-      <td>0.089354</td>
-      <td>0.758454</td>
-      <td>0.210525</td>
-      <td>0.070175</td>
-      <td>0.428020</td>
+      <td>0.274289</td>
+      <td>0.091430</td>
+      <td>0.768653</td>
+      <td>0.214602</td>
+      <td>0.071534</td>
+      <td>0.421694</td>
     </tr>
   </tbody>
 </table>
@@ -660,43 +693,53 @@ Again, we take the mean and standard deviation of this metric to allow compariso
   <tbody>
     <tr>
       <th>0</th>
+      <td>Baseline</td>
+      <td>0.034836</td>
+      <td>0.023224</td>
+      <td>0.276973</td>
+      <td>0.063148</td>
+      <td>0.042099</td>
+      <td>0.447503</td>
+    </tr>
+    <tr>
+      <th>0</th>
       <td>SGD_Matrix_Fact_vanilla_dot</td>
-      <td>0.033924</td>
-      <td>0.022616</td>
-      <td>0.250671</td>
-      <td>0.067292</td>
-      <td>0.044861</td>
-      <td>0.433399</td>
+      <td>0.035534</td>
+      <td>0.023689</td>
+      <td>0.255502</td>
+      <td>0.069611</td>
+      <td>0.046408</td>
+      <td>0.436143</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_vanilla_cosine</td>
-      <td>0.218894</td>
-      <td>0.145930</td>
-      <td>0.845947</td>
-      <td>0.160707</td>
-      <td>0.107138</td>
-      <td>0.360999</td>
+      <td>0.223242</td>
+      <td>0.148828</td>
+      <td>0.857756</td>
+      <td>0.158603</td>
+      <td>0.105735</td>
+      <td>0.349300</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_regularized_dot</td>
-      <td>0.084326</td>
-      <td>0.056218</td>
-      <td>0.566828</td>
-      <td>0.092157</td>
-      <td>0.061438</td>
-      <td>0.495514</td>
+      <td>0.083790</td>
+      <td>0.055860</td>
+      <td>0.561997</td>
+      <td>0.092529</td>
+      <td>0.061686</td>
+      <td>0.496142</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_regularized_cosine</td>
-      <td>0.247343</td>
-      <td>0.164895</td>
-      <td>0.893720</td>
-      <td>0.160956</td>
-      <td>0.107304</td>
-      <td>0.308196</td>
+      <td>0.253945</td>
+      <td>0.169297</td>
+      <td>0.906602</td>
+      <td>0.159724</td>
+      <td>0.106483</td>
+      <td>0.290989</td>
     </tr>
   </tbody>
 </table>
@@ -742,43 +785,53 @@ Again, we take the mean and standard deviation of this metric to allow compariso
   <tbody>
     <tr>
       <th>0</th>
+      <td>Baseline</td>
+      <td>0.035033</td>
+      <td>0.035033</td>
+      <td>0.380569</td>
+      <td>0.052979</td>
+      <td>0.052979</td>
+      <td>0.485527</td>
+    </tr>
+    <tr>
+      <th>0</th>
       <td>SGD_Matrix_Fact_vanilla_dot</td>
-      <td>0.036965</td>
-      <td>0.036965</td>
-      <td>0.348363</td>
-      <td>0.062706</td>
-      <td>0.062706</td>
-      <td>0.476452</td>
+      <td>0.038003</td>
+      <td>0.038003</td>
+      <td>0.345679</td>
+      <td>0.064477</td>
+      <td>0.064477</td>
+      <td>0.475589</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_vanilla_cosine</td>
-      <td>0.189873</td>
-      <td>0.189873</td>
-      <td>0.908749</td>
-      <td>0.129153</td>
-      <td>0.129153</td>
-      <td>0.287965</td>
+      <td>0.192235</td>
+      <td>0.192235</td>
+      <td>0.911970</td>
+      <td>0.127776</td>
+      <td>0.127776</td>
+      <td>0.283339</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_regularized_dot</td>
-      <td>0.083342</td>
-      <td>0.083342</td>
-      <td>0.703704</td>
-      <td>0.076630</td>
-      <td>0.076630</td>
-      <td>0.456623</td>
+      <td>0.084201</td>
+      <td>0.084201</td>
+      <td>0.702630</td>
+      <td>0.077584</td>
+      <td>0.077584</td>
+      <td>0.457101</td>
     </tr>
     <tr>
       <th>0</th>
       <td>SGD_Matrix_Fact_regularized_cosine</td>
-      <td>0.227232</td>
-      <td>0.227232</td>
-      <td>0.941492</td>
-      <td>0.133888</td>
-      <td>0.133888</td>
-      <td>0.234701</td>
+      <td>0.228019</td>
+      <td>0.228019</td>
+      <td>0.952764</td>
+      <td>0.132705</td>
+      <td>0.132705</td>
+      <td>0.212142</td>
     </tr>
   </tbody>
 </table>
@@ -796,35 +849,43 @@ metrics remains relatively similar. This indicates the same proportion of releva
 <h2>Drill Down Deeper<a class="headerlink" href="#drill-down-deeper" title="Permalink to this headline">¶</a></h2>
 <p>As mentioned in the introduction section, just computing evaluation metrics across all users does not truly capture the effectiveness of a recommendation system. We decide to drill down deeper, viewing users in three separate ways based on their behaviour.</p>
 <ul class="simple">
-<li><p><em>Diversity</em>: We are interested in how our systems perform for users with an uniform listening taste vs users with a varied taste.  We attach a diversity score to each user.
-$<span class="math notranslate nohighlight">\(
-D_{i} =   \frac{1}{|J|}
-\sum_{j=1}^{|J|}
-tc_{j}
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>J<span class="math notranslate nohighlight">\( is the set of artists that user \)</span>i<span class="math notranslate nohighlight">\( listened to and \)</span>tc_{j}<span class="math notranslate nohighlight">\( represents the total number of unique tags (assigned by **all** users) belonging to artist \)</span>j$.
-Of course, there is a cavet to this formulation, in that user’s who  listen to more artists will generally have  have a higher score. This score is then used to divide the users into four distinct groups.</p></li>
-<li><p><em>“Following the crowd” users</em>: Users are divided into four groups of approximently equal size, depending on how mainstream their listening habitats are. First, we caulate the mainstreamness of an artist j:
-$<span class="math notranslate nohighlight">\(
-M_{j} =   \frac{1}{M}
-\sum_{i=1}^{M}
-\begin{cases}
-  1 &amp; \text{if \)</span>u_{i} \in \tau <span class="math notranslate nohighlight">\(} \\
-  0 &amp; \text{otherwise}
-\end{cases}
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\tau<span class="math notranslate nohighlight">\( represents an artist's audience and \)</span>M<span class="math notranslate nohighlight">\( is the the total number of users on the Last.fm Website.  User \)</span>i<span class="math notranslate nohighlight">\('s mainstream listening habitat (\)</span>MH_{i}<span class="math notranslate nohighlight">\() is then calculated as follows:
-\)</span><span class="math notranslate nohighlight">\(
-MH_{i} =   \frac{1}{J}
-\sum_{j=1}^{J}
-M_{j}
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>J<span class="math notranslate nohighlight">\( is the set of artists that user \)</span>i$ listened to.</p></li>
-<li><p><em>Activity on <a class="reference external" href="http://Last.fm">Last.fm</a></em>: Users are divided into four separate clusters of approximately equal size depending on their activity on the <a class="reference external" href="http://last.fm">last.fm</a> website. “Activity” is calculated for user i as follows:
-$<span class="math notranslate nohighlight">\(
-A_{i} = {\text{Total Number of plays}}
-\)</span>$</p></li>
+<li><p><em>Diversity</em>: We are interested in how our systems perform for users with an uniform listening taste vs users with a varied taste.  We attach a diversity score to each user.</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[
+ D_{i} =   \frac{1}{|J|}
+ \sum_{j=1}^{|J|}
+ tc_{j}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is the set of artists that user <span class="math notranslate nohighlight">\(i\)</span> listened to and <span class="math notranslate nohighlight">\(tc_{j}\)</span> represents the total number of unique tags (assigned by <strong>all</strong> users) belonging to artist <span class="math notranslate nohighlight">\(j\)</span>.
+Of course, there is a cavet to this formulation, in that user’s who  listen to more artists will generally have  have a higher score. This score is then used to divide the users into four distinct groups.</p>
+<ul class="simple">
+<li><p><em>“Following the crowd” users</em>: Users are divided into four groups of approximently equal size, depending on how mainstream their listening habitats are. First, we caulate the mainstreamness of an artist j:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+M_{j} =   \frac{1}{M}
+ \sum_{i=1}^{M}
+  \begin{cases}
+    1 &amp; \text{if $u_{i} \in \tau $} \\
+    0 &amp; \text{otherwise}
+  \end{cases}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tau\)</span> represents an artist’s audience and <span class="math notranslate nohighlight">\(M\)</span> is the the total number of users on the <a class="reference external" href="http://Last.fm">Last.fm</a> Website.  User <span class="math notranslate nohighlight">\(i\)</span>’s mainstream listening habitat (<span class="math notranslate nohighlight">\(MH_{i}\)</span>) is then calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+ MH_{i} =   \frac{1}{J}
+ \sum_{j=1}^{J}
+ M_{j}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is the set of artists that user <span class="math notranslate nohighlight">\(i\)</span> listened to.</p>
+<ul class="simple">
+<li><p><em>Activity on <a class="reference external" href="http://Last.fm">Last.fm</a></em>: Users are divided into four separate clusters of approximately equal size depending on their activity on the <a class="reference external" href="http://last.fm">last.fm</a> website. “Activity” is calculated for user i as follows:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+A_{i} = {\text{Total Number of plays}}
+\]</div>
 <p>For all semantic categories, quartile ranges <span class="math notranslate nohighlight">\(Q_{1}, Q_{2}, Q_{3}\)</span> are utilised as cutting off points for their respective groups.</p>
 <p>We now define helper functions to aid in this process.</p>
 <div class="cell docutils container">
@@ -946,7 +1007,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_18_0.png" src="_images/Evaluation_18_0.png" />
+<img alt="_images/Evaluation_20_0.png" src="_images/Evaluation_20_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -956,7 +1017,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_19_0.png" src="_images/Evaluation_19_0.png" />
+<img alt="_images/Evaluation_21_0.png" src="_images/Evaluation_21_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -966,7 +1027,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_20_0.png" src="_images/Evaluation_20_0.png" />
+<img alt="_images/Evaluation_22_0.png" src="_images/Evaluation_22_0.png" />
 </div>
 </div>
 </div>
@@ -979,7 +1040,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_22_0.png" src="_images/Evaluation_22_0.png" />
+<img alt="_images/Evaluation_24_0.png" src="_images/Evaluation_24_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -989,7 +1050,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_23_0.png" src="_images/Evaluation_23_0.png" />
+<img alt="_images/Evaluation_25_0.png" src="_images/Evaluation_25_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -999,7 +1060,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_24_0.png" src="_images/Evaluation_24_0.png" />
+<img alt="_images/Evaluation_26_0.png" src="_images/Evaluation_26_0.png" />
 </div>
 </div>
 </div>
@@ -1012,7 +1073,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_26_0.png" src="_images/Evaluation_26_0.png" />
+<img alt="_images/Evaluation_28_0.png" src="_images/Evaluation_28_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1022,7 +1083,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_27_0.png" src="_images/Evaluation_27_0.png" />
+<img alt="_images/Evaluation_29_0.png" src="_images/Evaluation_29_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1033,7 +1094,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_28_0.png" src="_images/Evaluation_28_0.png" />
+<img alt="_images/Evaluation_30_0.png" src="_images/Evaluation_30_0.png" />
 </div>
 </div>
 <p>Music habits vary considerably across users. An ideal recommender system should be accurately meet the requirements of <em>all users</em>. There is a trend across all examined metrics that users with more uniform tastes are better served than those with a diverse set of tastes. We also notice similar observations as our overall evaluation, in terms of the trends of the precision, recall and hit-rate values for each value of K. The spread of the evaluation metrics either increases or stays the same as user’s listening habitats become more diverse.</p>
@@ -1052,7 +1113,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_32_0.png" src="_images/Evaluation_32_0.png" />
+<img alt="_images/Evaluation_34_0.png" src="_images/Evaluation_34_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1062,7 +1123,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_33_0.png" src="_images/Evaluation_33_0.png" />
+<img alt="_images/Evaluation_35_0.png" src="_images/Evaluation_35_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1072,7 +1133,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_34_0.png" src="_images/Evaluation_34_0.png" />
+<img alt="_images/Evaluation_36_0.png" src="_images/Evaluation_36_0.png" />
 </div>
 </div>
 </div>
@@ -1085,7 +1146,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_36_0.png" src="_images/Evaluation_36_0.png" />
+<img alt="_images/Evaluation_38_0.png" src="_images/Evaluation_38_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1095,7 +1156,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_37_0.png" src="_images/Evaluation_37_0.png" />
+<img alt="_images/Evaluation_39_0.png" src="_images/Evaluation_39_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1105,7 +1166,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_38_0.png" src="_images/Evaluation_38_0.png" />
+<img alt="_images/Evaluation_40_0.png" src="_images/Evaluation_40_0.png" />
 </div>
 </div>
 </div>
@@ -1118,7 +1179,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_40_0.png" src="_images/Evaluation_40_0.png" />
+<img alt="_images/Evaluation_42_0.png" src="_images/Evaluation_42_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1128,7 +1189,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_41_0.png" src="_images/Evaluation_41_0.png" />
+<img alt="_images/Evaluation_43_0.png" src="_images/Evaluation_43_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1138,7 +1199,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_42_0.png" src="_images/Evaluation_42_0.png" />
+<img alt="_images/Evaluation_44_0.png" src="_images/Evaluation_44_0.png" />
 </div>
 </div>
 <p>An ideal artist recommender system should not alienate users with niche music habitats. We notice two main threads:</p>
@@ -1168,7 +1229,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_47_0.png" src="_images/Evaluation_47_0.png" />
+<img alt="_images/Evaluation_49_0.png" src="_images/Evaluation_49_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1178,7 +1239,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_48_0.png" src="_images/Evaluation_48_0.png" />
+<img alt="_images/Evaluation_50_0.png" src="_images/Evaluation_50_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1188,7 +1249,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_49_0.png" src="_images/Evaluation_49_0.png" />
+<img alt="_images/Evaluation_51_0.png" src="_images/Evaluation_51_0.png" />
 </div>
 </div>
 </div>
@@ -1201,7 +1262,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_51_0.png" src="_images/Evaluation_51_0.png" />
+<img alt="_images/Evaluation_53_0.png" src="_images/Evaluation_53_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1211,7 +1272,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_52_0.png" src="_images/Evaluation_52_0.png" />
+<img alt="_images/Evaluation_54_0.png" src="_images/Evaluation_54_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1221,7 +1282,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_53_0.png" src="_images/Evaluation_53_0.png" />
+<img alt="_images/Evaluation_55_0.png" src="_images/Evaluation_55_0.png" />
 </div>
 </div>
 </div>
@@ -1234,7 +1295,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_55_0.png" src="_images/Evaluation_55_0.png" />
+<img alt="_images/Evaluation_57_0.png" src="_images/Evaluation_57_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1244,7 +1305,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_56_0.png" src="_images/Evaluation_56_0.png" />
+<img alt="_images/Evaluation_58_0.png" src="_images/Evaluation_58_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1254,7 +1315,7 @@ A_{i} = {\text{Total Number of plays}}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Evaluation_57_0.png" src="_images/Evaluation_57_0.png" />
+<img alt="_images/Evaluation_59_0.png" src="_images/Evaluation_59_0.png" />
 </div>
 </div>
 <p>There is no discernable trend or bias observed in terms our recommendation’s systems ability to recommend items to users of different activity level. This makes intuitive sense as we use a binary matrix to encode user’s interactions rather than min-max normalizing the listening counts. Perhaps if we did the latter, we would observe increased performance for user’s who interact with <a class="reference external" href="http://Last.fm">Last.fm</a> more. Although there is a slight trend that the performance of models with cosine similarity decrease with increased user activity where as those who incorporate the dot product increase, We also notice that regularization increases a model’s performance significantly, indicating the model generalize well to user’s with different listening habitats.</p>
