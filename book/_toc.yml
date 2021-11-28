@@ -6,5 +6,6 @@ root: Introduction
 chapters:
 - file: Collaborative_filtering
 - file: Evaluation
+- file: Graph_anaylsis
 - file: Conclusion
 - file: References
