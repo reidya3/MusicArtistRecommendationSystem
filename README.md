@@ -9,22 +9,11 @@
 </h3>
 
 ## Table of Contents
-- [Google Colab links](#google-colab)
 - [Github Link](#github-link)
 - [Development](#development)
 - [Usage](#usage)
 - [Report](#report)
 - [Website](#website)
-
-## Google Colab
-
-The notebooks in our jupyter book are also available on Google Colab:
-- **book/Introduction.ipynb**:
-- **book/Collaborative_filtering.ipynb**:
-- **book/Softmax_model.ipynb**:
-- **book/Evaluation.ipynb**:
-- **book/Graph_anaylsis.ipynb**:
-- **book/Conclusion.md**:
 
 
 
