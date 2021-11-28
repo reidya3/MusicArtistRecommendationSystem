@@ -14,9 +14,7 @@ Our most significant results are the following:
 
 5. There was no distinguishable trends when examining the performance of our models with users of varying activity levels. This is most certainly due to the way we encode user interactions through a binary matrix.
 
-6. 
-
-
+6. The social network of Last.fm does the observe the qualities of a small-world network. We did not observe a small-world phenomenon of users being linked together by a short chain of acquaintances. This is likely due to the fact that Last.fm is not a social network or messaging service. 
 
 7. Label propagation was effective in removing redundancy of user-submitted tags. The newly identified communities of tags  were intuitive.  For instance, being clustered together. 
 
