@@ -13,6 +13,7 @@
 - [Github Link](#github-link)
 - [Development](#development)
 - [Usage](#usage)
+- [Report](#report)
 - [Website](#website)
 
 ## Google Colab
@@ -53,6 +54,10 @@ sudo apt-get install texlive-latex-recommended texlive-latex-ie \
 ```
 Next, to build a PDF of the project, please use the following command `jupyter-book build  book/ --builder pdflatex`. **Note**, you will have to build a html version first. 
 
-For further information on how to accomplish this on other OS's, please [click here](https://jupyterbook.org/advanced/pdf.html?highlight=build%20pdf). The report can be found in the [here](report.pdf)
+For further information on how to accomplish this on other OS's, please [click here](https://jupyterbook.org/advanced/pdf.html?highlight=build%20pdf). 
+
+## Report
+The report can be found in the [here](report.pdf)
+
 ## Website
 The content of this jupyter book is [hosted here](https://reidya3.github.io/MusicArtistRecommendationSystem/Introduction.html). Github actions are utilized to automatically build the book and update the website when a `push` or `pull request` event occurs on the main branch.
