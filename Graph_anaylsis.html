@@ -254,13 +254,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#betweeness-centrality">
-   Betweeness centrality
+  <a class="reference internal nav-link" href="#betweenness-centrality">
+   Betweenness Centrality
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#louvian-modularity">
-   Louvian modularity:
+  <a class="reference internal nav-link" href="#louvain-modularity">
+   Louvain modularity:
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -294,7 +294,7 @@ interest into a monopartite sub-graph. <em>Graph_2</em> contains <span class="ma
 <li><p><a class="reference external" href="#constructing-the-graphs">Construct Graphs</a></p></li>
 <li><p><a class="reference external" href="#degree-centrality">Degree centrality</a></p></li>
 <li><p><a class="reference external" href="#clustering-coefficient-and-triangular-count">Local clustering coefficient</a></p></li>
-<li><p><a class="reference external" href="#betweeness-centrality">Betweeness Centrality</a></p></li>
+<li><p><a class="reference external" href="#betweeness-centrality">Betweenness centrality</a></p></li>
 <li><p><a class="reference external" href="#Louvian-modularity">Louvian Modularity</a></p></li>
 <li><p><a class="reference external" href="#label-propagation">Label propagation (Finding Super Tags)</a></p></li>
 </ul>
@@ -350,7 +350,7 @@ Requirement already satisfied: numpy in /opt/hostedtoolcache/Python/3.7.12/x64/l
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2630</span><span class="o">/</span><span class="mf">2131395244.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2547</span><span class="o">/</span><span class="mf">2131395244.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">user_artists</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/user_artists.dat&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">user_friendships</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/unqiue_friendships.csv&#39;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">tags</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/tags.dat&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -686,10 +686,15 @@ Note, if <span class="math notranslate nohighlight">\(d_{n}\)</span> &lt; 2, it 
 </div>
 </div>
 <p>0.06315564340785443</p>
+<p>Globally, the graph_1 projection has an average clustering coefficient of 0.186544. This indicates, on average, a user’s friends have a probability of 18.6% of also being friends. This indicates that the social network of <a class="reference external" href="http://Last.fm">Last.fm</a> is not tight knit together but rather sparse. A network with a higher average clustering coefficient is often called a small world network, which this graph does not show.</p>
+<p>Similarly, the graph_2 projection has an average clustering coefficient of 0.0631556. This indicates that the music taste of <a class="reference external" href="http://Last.fm">Last.fm</a>’s users are rather sparse, with each artist’s audience being unlikely to listen to the same artist.</p>
 </div>
-<div class="section" id="betweeness-centrality">
-<h2>Betweeness centrality<a class="headerlink" href="#betweeness-centrality" title="Permalink to this headline">¶</a></h2>
-<p>Betweenness centrality detects the amount of influence a node has over the flow of information in a graph i.e. detecting ‘bridge points’ between one part of a graph to another. For <em>graph_1</em>, we interrupt these bridging nodes as famous Djs or prominent influencers within the graph. For <em>graph_2</em>, we interpret these bridging nodes as people with varied music tastes, joining users with almost mono music interest.</p>
+<div class="section" id="betweenness-centrality">
+<h2>Betweenness Centrality<a class="headerlink" href="#betweenness-centrality" title="Permalink to this headline">¶</a></h2>
+<p>Betweenness centrality detects the amount of influence a node has over the flow of information in a graph i.e. detecting
+‘bridge points’ between one part of a graph to another. For <em>graph_1,</em> we interrupt these bridging nodes as famous Djs
+or prominent influencers within the graph. For <em>graph_2</em>, we interpret these bridging nodes as people with varied music
+tastes, joining users with almost mono music interests</p>
 <p><em>Graph_1</em>: The most influential users of <a class="reference external" href="http://Last.FM">Last.FM</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -811,10 +816,12 @@ Note, if <span class="math notranslate nohighlight">\(d_{n}\)</span> &lt; 2, it 
 </div></div></div>
 </div>
 </div>
-<div class="section" id="louvian-modularity">
-<h2>Louvian modularity:<a class="headerlink" href="#louvian-modularity" title="Permalink to this headline">¶</a></h2>
-<p>Louvian modularity is not part of the official networkx library. Therefore, we decide to use the <code class="docutils literal notranslate"><span class="pre">python-louvian</span></code> package. Louvain modularity is used to find communities, hierarchies and/or evaluate different grouping
-thresholds. Louvain modularity compares relationship densities in given clusters to densities between clusters i.e. we want a lot of connections in the set and few connections outside the set. We apply this algorithm to <em>Graph_1</em> and <em>Graph_2</em> to find:</p>
+<div class="section" id="louvain-modularity">
+<h2>Louvain modularity:<a class="headerlink" href="#louvain-modularity" title="Permalink to this headline">¶</a></h2>
+<p>Louvain modularity is not part of the official networkx library. Therefore, we decide to use the python-louvian
+package. Louvain modularity is used to find communities, hierarchies and/or evaluate different grouping thresholds.
+Louvain modularity compares relationship densities in given clusters to densities between clusters i.e. we want a lot of
+connections in the set and few connections outside the set. We apply this algorithm to <em>Graph_1</em> and <em>Graph_2</em> to find:</p>
 <ul class="simple">
 <li><p>(a) distinct social communities</p></li>
 <li><p>(b) distinct communities of similar music tastes</p></li>
@@ -837,7 +844,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_32_0.png" src="_images/Graph_anaylsis_32_0.png" />
+<img alt="_images/Graph_anaylsis_33_0.png" src="_images/Graph_anaylsis_33_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -852,7 +859,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_33_0.png" src="_images/Graph_anaylsis_33_0.png" />
+<img alt="_images/Graph_anaylsis_34_0.png" src="_images/Graph_anaylsis_34_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -896,7 +903,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_37_0.png" src="_images/Graph_anaylsis_37_0.png" />
+<img alt="_images/Graph_anaylsis_38_0.png" src="_images/Graph_anaylsis_38_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -935,7 +942,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_40_0.png" src="_images/Graph_anaylsis_40_0.png" />
+<img alt="_images/Graph_anaylsis_41_0.png" src="_images/Graph_anaylsis_41_0.png" />
 </div>
 </div>
 <p>These form during the algorithms second pass where several of the possible intuitive communities are merged together. Louvian modulairty has the power to  reveal hierarchy of communities at different scales. The function <code class="docutils literal notranslate"><span class="pre">generate_dendrogram</span></code> gives us a dictionary mapping from level of hierarchy to the partition. Finally, <code class="docutils literal notranslate"><span class="pre">partition_at_level</span></code> takes the result of <code class="docutils literal notranslate"><span class="pre">generate_dendrogram</span></code> and returns a dictionary of the partition, where keys are nodes and values are the index of partition the node belongs to. We use to find the level with the most number of communities.</p>
@@ -964,7 +971,7 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_43_0.png" src="_images/Graph_anaylsis_43_0.png" />
+<img alt="_images/Graph_anaylsis_44_0.png" src="_images/Graph_anaylsis_44_0.png" />
 </div>
 </div>
 <p>Unfortunately, only a marginal number of additional communities were revealed when we reviewed the different levels of partitions. Finally, the top ten tags by occurrence are plotted in these communities.</p>
@@ -992,15 +999,12 @@ thresholds. Louvain modularity compares relationship densities in given clusters
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Graph_anaylsis_46_0.png" src="_images/Graph_anaylsis_46_0.png" />
-<img alt="_images/Graph_anaylsis_46_1.png" src="_images/Graph_anaylsis_46_1.png" />
-<img alt="_images/Graph_anaylsis_46_2.png" src="_images/Graph_anaylsis_46_2.png" />
+<img alt="_images/Graph_anaylsis_47_0.png" src="_images/Graph_anaylsis_47_0.png" />
+<img alt="_images/Graph_anaylsis_47_1.png" src="_images/Graph_anaylsis_47_1.png" />
+<img alt="_images/Graph_anaylsis_47_2.png" src="_images/Graph_anaylsis_47_2.png" />
 </div>
 </div>
-<p>We observe some commonality in these two communities. For instance, rock, electronic, pop, alternative were present in the top 10 assigned tags in all three communities. Although these are also the top four global tags, so we would expect this given the small number of communities identified.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-</div>
+<p>We observe some commonality in these three communities. For instance, rock, electronic, pop, alternative were present in the top 10 assigned tags in all three communities. Although these are also the top four global tags. We expect this given the small number of communities identified.</p>
 <p>Besides this, we observe a clear distinction in music tastes among the three clusters. Cluster 0 has a more of tendency to listen to rock and sub genres of rock where as community 1 listens to 90s and dance music. Community 2 seems to follow the mainstream, with little defining music taste.</p>
 </div>
 <div class="section" id="label-propagation-finding-super-tags">
